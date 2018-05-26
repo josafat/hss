@@ -2,3 +2,5 @@
 .uuid
 home-assistant.log
 home-assistant_v2.db
+
+secrets.yaml
