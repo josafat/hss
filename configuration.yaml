@@ -14,7 +14,7 @@ homeassistant:
   customize: !include customize.yaml
 
 # Show links to resources in log and frontend
-introduction:
+#introduction:
 
 # Enables the frontend
 frontend:
@@ -65,6 +65,12 @@ tts:
 
 # Cloud
 cloud:
+
+bmw_connected_drive:
+  bmw530e:
+    username: !secret bmw_username
+    password: !secret bmw_password
+    region: rest_of_world
 
 group: !include groups.yaml
 automation: !include automations.yaml
