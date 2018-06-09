@@ -2,8 +2,8 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: 60.1742
-  longitude: 24.6842
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 12
   # metric for Metric, imperial for Imperial
@@ -58,6 +58,147 @@ sun:
 # Weather prediction
 sensor:
   - platform: yr
+    name: WeatherTomorrow
+    forecast: 24
+    monitored_conditions:
+      - temperature
+      - symbol
+      - precipitation
+      - windSpeed
+      - windDirection
+      - humidity
+      - fog
+      - cloudiness
+      - lowClouds
+      - mediumClouds
+      - highClouds
+
+
+  - platform: modbus
+    registers:
+    - name: IV Raitisilman lampotila
+      unit_of_measurement: °C
+      slave: 1
+      register: 6
+      scale: 0.1
+      count: 1
+      register_type: holding
+    - name: IV Tuloilman lampotila LTOn jalkeen X2
+      unit_of_measurement: °C
+      slave: 1
+      register: 7
+      scale: 0.1
+      count: 1
+      register_type: holding
+    - name: IV Tuloilman lampotila X3
+      unit_of_measurement: °C
+      slave: 1
+      register: 8
+      scale: 0.1
+      count: 1
+      register_type: holding
+    - name: IV Jateilman lampotila X4
+      unit_of_measurement: °C
+      slave: 1
+      register: 9
+      scale: 0.1
+      count: 1
+      register_type: holding
+    - name: IV Poistoilman lampotila X5
+      unit_of_measurement: °C
+      slave: 1
+      register: 10
+      scale: 0.1
+      count: 1
+      register_type: holding
+    - name: IV Poistoilman lampotila ennen LTO X8
+      unit_of_measurement: °C
+      slave: 1
+      register: 11
+      scale: 0.1
+      count: 1
+      register_type: holding
+    - name: IV Paluuveden lampotila X8
+      unit_of_measurement: °C
+      slave: 1
+      register: 12
+      scale: 0.1
+      count: 1
+      register_type: holding
+    - name: IV Poistoilman kosteus X5
+      unit_of_measurement: '%'
+      slave: 1
+      register: 13
+      count: 1
+      register_type: holding
+    - name: IV LTO hyotysuhde tulopuolella
+      unit_of_measurement: '%'
+      slave: 1
+      register: 29
+      count: 1
+      register_type: holding
+    - name: IV LTO hyotysuhde poistopuolella
+      unit_of_measurement: '%'
+      slave: 1
+      register: 30
+      count: 1
+      register_type: holding
+    - name: IV 48h kosteustason keskiarvo
+      unit_of_measurement: '%'
+      slave: 1
+      register: 35
+      count: 1
+      register_type: holding
+    - name: IV Tilatieto
+      slave: 1
+      register: 44
+      count: 1
+      register_type: holding
+    - name: IV Lampotilan saatoportaat
+      slave: 1
+      register: 45
+      count: 1
+      register_type: holding
+    - name: IV Huone Lampotilan keskiarvo
+      slave: 1
+      register: 46
+      count: 1
+      register_type: holding
+    - name: IV Todellinen teho
+      unit_of_measurement: '%'
+      slave: 1
+      register: 50
+      count: 1
+      register_type: holding
+
+switch:
+  platform: modbus
+  coils:
+    - name: IV Poissa
+      slave: 1
+      coil: 1
+    - name: IV Pitkaan Poissa
+      slave: 1
+      coil: 2
+    - name: IV Liesituuletin
+      slave: 1
+      coil: 4
+    - name: IV Kosteus Tehostus
+      slave: 1
+      coil: 9
+    - name: IV Tehostus
+      slave: 1
+      coil: 10
+    - name: IV Lampotila Tehostus
+      slave: 1
+      coil: 11
+    - name: IV Jaahdytys sallittu
+      slave: 1
+      coil: 52
+    - name: IV Lammitus sallittu
+      slave: 1
+      coil: 54
+  #registers:
 
 # Text to speech
 tts:
@@ -71,6 +212,29 @@ bmw_connected_drive:
     username: !secret bmw_username
     password: !secret bmw_password
     region: rest_of_world
+
+modbus:
+  type: serial
+  method: rtu
+  port: /dev/ttyUSB0
+  baudrate: 19200
+  stopbits: 1
+  bytesize: 8
+  parity: N
+
+ios:
+
+device_tracker:
+  - platform: unifi
+    host: !secret unifi_address
+    verify_ssl: false
+    username: !secret unifi_username
+    password: !secret unifi_password
+    ssid_filter:
+      - !secret unifi_ssid
+
+weather:
+  - platform: yweather
 
 group: !include groups.yaml
 automation: !include automations.yaml

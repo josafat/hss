@@ -1,0 +1,26 @@
+device_tracker.chromecast_2:
+  hidden: true
+device_tracker.chromecast:
+  hidden: true
+device_tracker.juhanismbp:
+  hidden: true
+device_tracker.juhanisipad:
+  hidden: true
+device_tracker.homeassistant:
+  hidden: true
+device_tracker.raspberrypi:
+  hidden: true
+device_tracker.raspberryylakerta:
+  hidden: true
+device_tracker.unifictl:
+  hidden: true
+device_tracker.sonoszp:
+  hidden: true
+device_tracker.sonoszp_3:
+  hidden: true
+device_tracker.sonoszp_2:
+  hidden: true
+sun.sun:
+  hidden: true
+sensor.yr_symbol:
+  hidden: true

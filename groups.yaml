@@ -1,0 +1,112 @@
+#  default_view:
+#    view: yes
+#    icon: mdi:home
+#    entities:
+#      - group.locks
+#      - camera.front_porch
+#      - camera.garage
+#      - camera.garage_interior
+
+  bmw530e:
+    #view: yes
+    #icon: mdi:car
+    entities:
+      - binary_sensor.530e_iperformance_door_lock_state
+      - binary_sensor.530e_iperformance_windows
+      - lock.530e_iperformance_lock
+      - binary_sensor.530e_iperformance_lids
+      - binary_sensor.530e_iperformance_condition_based_services
+      - binary_sensor.530e_iperformance_connection_status
+      - binary_sensor.530e_iperformance_charging_status
+      - binary_sensor.530e_iperformance_lights_parking
+      - binary_sensor.530e_iperformance_check_control_messages
+      - sensor.530e_iperformance_charging_level_hv
+      - sensor.530e_iperformance_charging_status
+      - sensor.530e_iperformance_charging_time_remaining
+      - sensor.530e_iperformance_max_range_electric
+      - sensor.530e_iperformance_mileage
+      - sensor.530e_iperformance_remaining_fuel
+      - sensor.530e_iperformance_remaining_range_electric
+      - sensor.530e_iperformance_remaining_range_fuel
+      - sensor.530e_iperformance_remaining_range_total
+
+  AutoView:
+    view: yes
+    icon: mdi:car
+    entities:
+      - group.bmw530e
+
+  ilmanvaihtoView:
+    view: yes
+    icon: mdi:air-conditioner
+    entities:
+      - sensor.iv_48h_kosteustason_keskiarvo
+      - sensor.iv_jateilman_lampotila_x4
+      - sensor.iv_lampotilan_saatoportaat
+      - sensor.iv_lto_hyotysuhde_poistopuolella
+      - sensor.iv_lto_hyotysuhde_tulopuolella
+      - sensor.iv_op1_lampomittaus_paalla
+      - sensor.iv_paluuveden_lampotila_x8
+      - sensor.iv_poissa
+      - sensor.iv_poistoilman_kosteus_x5
+      - sensor.iv_poistoilman_lampotila_ennen_lto_x8
+      - sensor.iv_poistoilman_lampotila_x5
+      - sensor.iv_raitisilman_lampotila
+      - sensor.iv_tehostus
+      - sensor.iv_tilatieto
+      - sensor.iv_todellinen_teho
+      - sensor.iv_tuloilman_lampotila_lton_jalkeen_x2
+      - sensor.iv_tuloilman_lampotila_x3
+      - switch.iv_jaahdytys_sallittu
+      - switch.iv_kosteus_tehostus
+      - switch.iv_lammitus_sallittu
+      - switch.iv_lampotila_tehostus
+      - switch.iv_liesituuletin
+      - switch.iv_pitkaan_poissa
+      - switch.iv_poissa
+      - switch.iv_tehostus
+
+  Media:
+    entities:
+      - media_player.alakerta
+      - media_player.alakerta_2
+      - media_player.chylakerta
+      - media_player.lastenhuone
+      - media_player.olohuone
+
+  MediaView:
+    view: yes
+    icon: mdi:play-network
+    entities:
+      - group.media
+
+  Sisailma:
+    control: hidden
+    icon: mdi:air-conditioner
+    entities:
+      - sensor.iv_raitisilman_lampotila
+      - sensor.iv_poistoilman_kosteus_x5
+      - sensor.iv_todellinen_teho
+      - switch.iv_poissa
+      - switch.iv_tehostus
+
+  Auto:
+    icon: mdi:car-sports
+    entities:
+      - sensor.530e_iperformance_remaining_range_total
+      - binary_sensor.530e_iperformance_connection_status
+      - sensor.530e_iperformance_charging_time_remaining
+
+  Lukot:
+    icon: mdi:lock
+    entities:
+      - lock.530e_iperformance_lock
+
+  default_view:
+    view: yes
+    icon: mdi:home
+    entities:
+      - group.sisailma
+      - group.lukot
+      - weather.yweather
+      #- group.auto
