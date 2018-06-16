@@ -73,7 +73,6 @@ sensor:
       - mediumClouds
       - highClouds
 
-
   - platform: modbus
     registers:
     - name: IV Raitisilman lampotila
@@ -170,6 +169,118 @@ sensor:
       register: 50
       count: 1
       register_type: holding
+
+  - platform: rest
+    name: ruuvi C4:20:6C:AF:66:F0 Temperature
+    resource: http://192.168.1.248:8080/device?id=C4:20:6C:AF:66:F0
+    value_template: '{{ value_json.Temp }}'
+    unit_of_measurement: °C
+  - platform: rest
+    name: ruuvi C4:20:6C:AF:66:F0 Humidity
+    resource: http://192.168.1.248:8080/device?id=C4:20:6C:AF:66:F0
+    value_template: '{{ value_json.Humidity }}'
+    unit_of_measurement: '%'
+  - platform: rest
+    name: ruuvi C4:20:6C:AF:66:F0 Battery
+    resource: http://192.168.1.248:8080/device?id=C4:20:6C:AF:66:F0
+    value_template: '{{ value_json.Battery }}'
+    unit_of_measurement: 'mV'
+
+  - platform: rest
+    name: ruuvi CC:F2:5E:65:0B:B4 Temperature
+    resource: http://192.168.1.248:8080/device?id=CC:F2:5E:65:0B:B4
+    value_template: '{{ value_json.Temp }}'
+    unit_of_measurement: °C
+  - platform: rest
+    name: ruuvi CC:F2:5E:65:0B:B4 Humidity
+    resource: http://192.168.1.248:8080/device?id=CC:F2:5E:65:0B:B4
+    value_template: '{{ value_json.Humidity }}'
+    unit_of_measurement: '%'
+  - platform: rest
+    name: ruuvi CC:F2:5E:65:0B:B4 Battery
+    resource: http://192.168.1.248:8080/device?id=CC:F2:5E:65:0B:B4
+    value_template: '{{ value_json.Battery }}'
+    unit_of_measurement: 'mV'
+
+  - platform: rest
+    name: ruuvi CD:3C:72:70:82:38 Temperature
+    resource: http://192.168.1.248:8080/device?id=CD:3C:72:70:82:38
+    value_template: '{{ value_json.Temp }}'
+    unit_of_measurement: °C
+  - platform: rest
+    name: ruuvi CD:3C:72:70:82:38 Humidity
+    resource: http://192.168.1.248:8080/device?id=CD:3C:72:70:82:38
+    value_template: '{{ value_json.Humidity }}'
+    unit_of_measurement: '%'
+  - platform: rest
+    name: ruuvi CD:3C:72:70:82:38 Battery
+    resource: http://192.168.1.248:8080/device?id=CD:3C:72:70:82:38
+    value_template: '{{ value_json.Battery }}'
+    unit_of_measurement: 'mV'
+
+  - platform: rest
+    name: ruuvi D5:20:68:95:DA:7A Temperature
+    resource: http://192.168.1.248:8080/device?id=D5:20:68:95:DA:7A
+    value_template: '{{ value_json.Temp }}'
+    unit_of_measurement: °C
+  - platform: rest
+    name: ruuvi D5:20:68:95:DA:7A Humidity
+    resource: http://192.168.1.248:8080/device?id=D5:20:68:95:DA:7A
+    value_template: '{{ value_json.Humidity }}'
+    unit_of_measurement: '%'
+  - platform: rest
+    name: ruuvi D5:20:68:95:DA:7A Battery
+    resource: http://192.168.1.248:8080/device?id=D5:20:68:95:DA:7A
+    value_template: '{{ value_json.Battery }}'
+    unit_of_measurement: 'mV'
+
+  - platform: rest
+    name: ruuvi F1:02:7F:A4:78:87 Temperature
+    resource: http://192.168.1.248:8080/device?id=F1:02:7F:A4:78:87
+    value_template: '{{ value_json.Temp }}'
+    unit_of_measurement: °C
+  - platform: rest
+    name: ruuvi F1:02:7F:A4:78:87 Humidity
+    resource: http://192.168.1.248:8080/device?id=F1:02:7F:A4:78:87
+    value_template: '{{ value_json.Humidity }}'
+    unit_of_measurement: '%'
+  - platform: rest
+    name: ruuvi F1:02:7F:A4:78:87 Battery
+    resource: http://192.168.1.248:8080/device?id=F1:02:7F:A4:78:87
+    value_template: '{{ value_json.Battery }}'
+    unit_of_measurement: 'mV'
+
+  - platform: rest
+    name: ruuvi F6:74:12:E2:94:96 Temperature
+    resource: http://192.168.1.248:8080/device?id=F6:74:12:E2:94:96
+    value_template: '{{ value_json.Temp }}'
+    unit_of_measurement: °C
+  - platform: rest
+    name: ruuvi F6:74:12:E2:94:96 Humidity
+    resource: http://192.168.1.248:8080/device?id=F6:74:12:E2:94:96
+    value_template: '{{ value_json.Humidity }}'
+    unit_of_measurement: '%'
+  - platform: rest
+    name: ruuvi F6:74:12:E2:94:96 Battery
+    resource: http://192.168.1.248:8080/device?id=F6:74:12:E2:94:96
+    value_template: '{{ value_json.Battery }}'
+    unit_of_measurement: 'mV'
+
+  - platform: rest
+    name: ruuvi F9:30:8E:AC:62:B2 Temperature
+    resource: http://192.168.1.248:8080/device?id=F9:30:8E:AC:62:B2
+    value_template: '{{ value_json.Temp }}'
+    unit_of_measurement: °C
+  - platform: rest
+    name: ruuvi F9:30:8E:AC:62:B2 Humidity
+    resource: http://192.168.1.248:8080/device?id=F9:30:8E:AC:62:B2
+    value_template: '{{ value_json.Humidity }}'
+    unit_of_measurement: '%'
+  - platform: rest
+    name: ruuvi F9:30:8E:AC:62:B2 Battery
+    resource: http://192.168.1.248:8080/device?id=F9:30:8E:AC:62:B2
+    value_template: '{{ value_json.Battery }}'
+    unit_of_measurement: 'mV'
 
 switch:
   platform: modbus

@@ -90,6 +90,32 @@
       - switch.iv_poissa
       - switch.iv_tehostus
 
+  Ruuvit:
+    view: yes
+    icon: mdi:weather-partlycloudy
+    entities:
+      - sensor.ruuvi_c4206caf66f0_battery
+      - sensor.ruuvi_c4206caf66f0_humidity
+      - sensor.ruuvi_c4206caf66f0_temperature
+      - sensor.ruuvi_ccf25e650bb4_battery
+      - sensor.ruuvi_ccf25e650bb4_humidity
+      - sensor.ruuvi_ccf25e650bb4_temperature
+      - sensor.ruuvi_cd3c72708238_battery
+      - sensor.ruuvi_cd3c72708238_humidity
+      - sensor.ruuvi_cd3c72708238_temperature
+      - sensor.ruuvi_d5206895da7a_battery
+      - sensor.ruuvi_d5206895da7a_humidity
+      - sensor.ruuvi_d5206895da7a_temperature
+      - sensor.ruuvi_f1027fa47887_battery
+      - sensor.ruuvi_f1027fa47887_humidity
+      - sensor.ruuvi_f1027fa47887_temperature
+      - sensor.ruuvi_f67412e29496_battery
+      - sensor.ruuvi_f67412e29496_humidity
+      - sensor.ruuvi_f67412e29496_temperature
+      - sensor.ruuvi_f9308eac62b2_battery
+      - sensor.ruuvi_f9308eac62b2_humidity
+      - sensor.ruuvi_f9308eac62b2_temperature
+
   Auto:
     icon: mdi:car-sports
     entities:
