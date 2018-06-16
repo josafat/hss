@@ -90,6 +90,19 @@
       - switch.iv_poissa
       - switch.iv_tehostus
 
+  Sisalampo:
+    control: hidden
+    entities:
+      - sensor.ruuvi_temperature_max
+      - sensor.ruuvi_temperature_mean
+      - sensor.ruuvi_temperature_min
+
+  Sisakosteus:
+    control: hidden
+    entities:
+      - sensor.ruuvi_humidity_max
+      - sensor.ruuvi_humidity_mean
+
   Ruuvit:
     view: yes
     icon: mdi:weather-partlycloudy
@@ -115,6 +128,12 @@
       - sensor.ruuvi_f9308eac62b2_battery
       - sensor.ruuvi_f9308eac62b2_humidity
       - sensor.ruuvi_f9308eac62b2_temperature
+      - sensor.ruuvi_ulkolampo_cee544df727e_battery
+      - sensor.ruuvi_ulkolampo_cee544df727e_humidity
+      - sensor.ruuvi_ulkolampo_cee544df727e_temperature
+      - sensor.ruuvi_auto_f805b0fa97be_battery
+      - sensor.ruuvi_auto_f805b0fa97be_humidity
+      - sensor.ruuvi_auto_f805b0fa97be_temperature
 
   Auto:
     icon: mdi:car-sports
@@ -135,4 +154,6 @@
       - group.sisailma
       - group.lukot
       - weather.yweather
+      - group.sisalampo
+      - group.sisakosteus
       #- group.auto

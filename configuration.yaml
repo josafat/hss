@@ -282,6 +282,98 @@ sensor:
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
+  - platform: rest
+    name: ruuvi Ulkolampo CE:E5:44:DF:72:7E Temperature
+    resource: http://192.168.1.237:8080/device?id=CE:E5:44:DF:72:7E
+    value_template: '{{ value_json.Temp }}'
+    unit_of_measurement: °C
+  - platform: rest
+    name: ruuvi Ulkolampo CE:E5:44:DF:72:7E Humidity
+    resource: http://192.168.1.237:8080/device?id=CE:E5:44:DF:72:7E
+    value_template: '{{ value_json.Humidity }}'
+    unit_of_measurement: '%'
+  - platform: rest
+    name: ruuvi Ulkolampo CE:E5:44:DF:72:7E Battery
+    resource: http://192.168.1.237:8080/device?id=CE:E5:44:DF:72:7E
+    value_template: '{{ value_json.Battery }}'
+    unit_of_measurement: 'mV'
+
+  - platform: rest
+    name: ruuvi Auto? F8:05:B0:FA:97:BE Temperature
+    resource: http://192.168.1.237:8080/device?id=F8:05:B0:FA:97:BE
+    value_template: '{{ value_json.Temp }}'
+    unit_of_measurement: °C
+  - platform: rest
+    name: ruuvi Auto? F8:05:B0:FA:97:BE Humidity
+    resource: http://192.168.1.237:8080/device?id=F8:05:B0:FA:97:BE
+    value_template: '{{ value_json.Humidity }}'
+    unit_of_measurement: '%'
+  - platform: rest
+    name: ruuvi Auto? F8:05:B0:FA:97:BE Battery
+    resource: http://192.168.1.237:8080/device?id=F8:05:B0:FA:97:BE
+    value_template: '{{ value_json.Battery }}'
+    unit_of_measurement: 'mV'
+
+  - platform: min_max
+    name: ruuvi humidity mean
+    type: mean
+    entity_ids:
+      - sensor.ruuvi_c4206caf66f0_humidity
+      - sensor.ruuvi_ccf25e650bb4_humidity
+      - sensor.ruuvi_cd3c72708238_humidity
+      - sensor.ruuvi_d5206895da7a_humidity
+      - sensor.ruuvi_f1027fa47887_humidity
+      - sensor.ruuvi_f67412e29496_humidity
+      - sensor.ruuvi_f9308eac62b2_humidity
+
+  - platform: min_max
+    name: ruuvi humidity max
+    type: max
+    entity_ids:
+      - sensor.ruuvi_c4206caf66f0_humidity
+      - sensor.ruuvi_ccf25e650bb4_humidity
+      - sensor.ruuvi_cd3c72708238_humidity
+      - sensor.ruuvi_d5206895da7a_humidity
+      - sensor.ruuvi_f1027fa47887_humidity
+      - sensor.ruuvi_f67412e29496_humidity
+      - sensor.ruuvi_f9308eac62b2_humidity
+
+  - platform: min_max
+    name: ruuvi temperature min
+    type: min
+    entity_ids:
+      - sensor.ruuvi_c4206caf66f0_temperature
+      - sensor.ruuvi_ccf25e650bb4_temperature
+      - sensor.ruuvi_cd3c72708238_temperature
+      - sensor.ruuvi_d5206895da7a_temperature
+      - sensor.ruuvi_f1027fa47887_temperature
+      - sensor.ruuvi_f67412e29496_temperature
+      - sensor.ruuvi_f9308eac62b2_temperature
+
+  - platform: min_max
+    name: ruuvi temperature max
+    type: max
+    entity_ids:
+      - sensor.ruuvi_c4206caf66f0_temperature
+      - sensor.ruuvi_ccf25e650bb4_temperature
+      - sensor.ruuvi_cd3c72708238_temperature
+      - sensor.ruuvi_d5206895da7a_temperature
+      - sensor.ruuvi_f1027fa47887_temperature
+      - sensor.ruuvi_f67412e29496_temperature
+      - sensor.ruuvi_f9308eac62b2_temperature
+
+  - platform: min_max
+    name: ruuvi temperature mean
+    type: mean
+    entity_ids:
+      - sensor.ruuvi_c4206caf66f0_temperature
+      - sensor.ruuvi_ccf25e650bb4_temperature
+      - sensor.ruuvi_cd3c72708238_temperature
+      - sensor.ruuvi_d5206895da7a_temperature
+      - sensor.ruuvi_f1027fa47887_temperature
+      - sensor.ruuvi_f67412e29496_temperature
+      - sensor.ruuvi_f9308eac62b2_temperature
+
 switch:
   platform: modbus
   coils:
