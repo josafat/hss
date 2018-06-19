@@ -24,9 +24,15 @@ config:
 
 http:
   # Secrets are defined in the file secrets.yaml
-  # api_password: !secret http_password
+  api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: example.duckdns.org:8123
+  #base_url: !secret base_url
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+
+duckdns:
+  domain: !secret dns_domain
+  access_token: !secret dns_access_token
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -267,6 +273,7 @@ sensor:
     unit_of_measurement: 'mV'
 
   - platform: rest
+    # suihku?
     name: ruuvi F9:30:8E:AC:62:B2 Temperature
     resource: http://192.168.1.248:8080/device?id=F9:30:8E:AC:62:B2
     value_template: '{{ value_json.Temp }}'
