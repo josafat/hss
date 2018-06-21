@@ -177,146 +177,145 @@ sensor:
       register_type: holding
 
   - platform: rest
-    name: ruuvi C4:20:6C:AF:66:F0 Temperature
+    name: Kodinhoito Temperature
     resource: http://192.168.1.248:8080/device?id=C4:20:6C:AF:66:F0
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
-    name: ruuvi C4:20:6C:AF:66:F0 Humidity
+    name: Kodinhoito Humidity
     resource: http://192.168.1.248:8080/device?id=C4:20:6C:AF:66:F0
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
-    name: ruuvi C4:20:6C:AF:66:F0 Battery
+    name: Kodinhoito Sensor Battery
     resource: http://192.168.1.248:8080/device?id=C4:20:6C:AF:66:F0
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
   - platform: rest
-    name: ruuvi CC:F2:5E:65:0B:B4 Temperature
+    name: Lastenhuone Temperature
     resource: http://192.168.1.248:8080/device?id=CC:F2:5E:65:0B:B4
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
-    name: ruuvi CC:F2:5E:65:0B:B4 Humidity
+    name: Lastenhuone Humidity
     resource: http://192.168.1.248:8080/device?id=CC:F2:5E:65:0B:B4
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
-    name: ruuvi CC:F2:5E:65:0B:B4 Battery
+    name: Lastenhuone Sensor Battery
     resource: http://192.168.1.248:8080/device?id=CC:F2:5E:65:0B:B4
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
   - platform: rest
-    name: ruuvi CD:3C:72:70:82:38 Temperature
+    name: Autotalli Temperature
     resource: http://192.168.1.248:8080/device?id=CD:3C:72:70:82:38
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
-    name: ruuvi CD:3C:72:70:82:38 Humidity
+    name: Autotalli Humidity
     resource: http://192.168.1.248:8080/device?id=CD:3C:72:70:82:38
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
-    name: ruuvi CD:3C:72:70:82:38 Battery
+    name: Autotalli Battery
     resource: http://192.168.1.248:8080/device?id=CD:3C:72:70:82:38
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
   - platform: rest
-    name: ruuvi D5:20:68:95:DA:7A Temperature
+    name: Makuuhuone Temperature
     resource: http://192.168.1.248:8080/device?id=D5:20:68:95:DA:7A
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
-    name: ruuvi D5:20:68:95:DA:7A Humidity
+    name: Makuuhuone Humidity
     resource: http://192.168.1.248:8080/device?id=D5:20:68:95:DA:7A
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
-    name: ruuvi D5:20:68:95:DA:7A Battery
+    name: Makuuhuone Sensor Battery
     resource: http://192.168.1.248:8080/device?id=D5:20:68:95:DA:7A
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
   - platform: rest
-    name: ruuvi F1:02:7F:A4:78:87 Temperature
+    name: Olohuone Temperature
     resource: http://192.168.1.248:8080/device?id=F1:02:7F:A4:78:87
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
-    name: ruuvi F1:02:7F:A4:78:87 Humidity
+    name: Olohuone Humidity
     resource: http://192.168.1.248:8080/device?id=F1:02:7F:A4:78:87
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
-    name: ruuvi F1:02:7F:A4:78:87 Battery
+    name: Olohuone Sensor Battery
     resource: http://192.168.1.248:8080/device?id=F1:02:7F:A4:78:87
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
   - platform: rest
-    name: ruuvi F6:74:12:E2:94:96 Temperature
+    name: Jakotukki Temperature
     resource: http://192.168.1.248:8080/device?id=F6:74:12:E2:94:96
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
-    name: ruuvi F6:74:12:E2:94:96 Humidity
+    name: Jakotukki Humidity
     resource: http://192.168.1.248:8080/device?id=F6:74:12:E2:94:96
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
-    name: ruuvi F6:74:12:E2:94:96 Battery
+    name: Jakotukki Sensor Battery
     resource: http://192.168.1.248:8080/device?id=F6:74:12:E2:94:96
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
   - platform: rest
-    # suihku?
-    name: ruuvi F9:30:8E:AC:62:B2 Temperature
+    name: Suihku Temperature
     resource: http://192.168.1.248:8080/device?id=F9:30:8E:AC:62:B2
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
-    name: ruuvi F9:30:8E:AC:62:B2 Humidity
+    name: Suihku Humidity
     resource: http://192.168.1.248:8080/device?id=F9:30:8E:AC:62:B2
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
-    name: ruuvi F9:30:8E:AC:62:B2 Battery
+    name: Suihku Sensor Battery
     resource: http://192.168.1.248:8080/device?id=F9:30:8E:AC:62:B2
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
   - platform: rest
-    name: ruuvi Ulkolampo CE:E5:44:DF:72:7E Temperature
+    name: Ulkolampo Temperature
     resource: http://192.168.1.237:8080/device?id=CE:E5:44:DF:72:7E
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
-    name: ruuvi Ulkolampo CE:E5:44:DF:72:7E Humidity
+    name: Ulkolampo Humidity
     resource: http://192.168.1.237:8080/device?id=CE:E5:44:DF:72:7E
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
-    name: ruuvi Ulkolampo CE:E5:44:DF:72:7E Battery
+    name: Ulkolampo Sensor Battery
     resource: http://192.168.1.237:8080/device?id=CE:E5:44:DF:72:7E
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
   - platform: rest
-    name: ruuvi Auto? F8:05:B0:FA:97:BE Temperature
+    name: Auto Temperature
     resource: http://192.168.1.237:8080/device?id=F8:05:B0:FA:97:BE
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
-    name: ruuvi Auto? F8:05:B0:FA:97:BE Humidity
+    name: Auto Humidity
     resource: http://192.168.1.237:8080/device?id=F8:05:B0:FA:97:BE
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
-    name: ruuvi Auto? F8:05:B0:FA:97:BE Battery
+    name: Auto Sensor Battery
     resource: http://192.168.1.237:8080/device?id=F8:05:B0:FA:97:BE
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
@@ -325,61 +324,61 @@ sensor:
     name: ruuvi humidity mean
     type: mean
     entity_ids:
-      - sensor.ruuvi_c4206caf66f0_humidity
-      - sensor.ruuvi_ccf25e650bb4_humidity
-      - sensor.ruuvi_cd3c72708238_humidity
-      - sensor.ruuvi_d5206895da7a_humidity
-      - sensor.ruuvi_f1027fa47887_humidity
-      - sensor.ruuvi_f67412e29496_humidity
-      - sensor.ruuvi_f9308eac62b2_humidity
+      - sensor.autotalli_humidity
+      - sensor.jakotukki_humidity
+      - sensor.kodinhoito_humidity
+      - sensor.lastenhuone_humidity
+      - sensor.makuuhuone_humidity
+      - sensor.olohuone_humidity
+      - sensor.suihku_humidity
 
   - platform: min_max
     name: ruuvi humidity max
     type: max
     entity_ids:
-      - sensor.ruuvi_c4206caf66f0_humidity
-      - sensor.ruuvi_ccf25e650bb4_humidity
-      - sensor.ruuvi_cd3c72708238_humidity
-      - sensor.ruuvi_d5206895da7a_humidity
-      - sensor.ruuvi_f1027fa47887_humidity
-      - sensor.ruuvi_f67412e29496_humidity
-      - sensor.ruuvi_f9308eac62b2_humidity
-
+      - sensor.autotalli_humidity
+      - sensor.jakotukki_humidity
+      - sensor.kodinhoito_humidity
+      - sensor.lastenhuone_humidity
+      - sensor.makuuhuone_humidity
+      - sensor.olohuone_humidity
+      - sensor.suihku_humidity
+      
   - platform: min_max
     name: ruuvi temperature min
     type: min
     entity_ids:
-      - sensor.ruuvi_c4206caf66f0_temperature
-      - sensor.ruuvi_ccf25e650bb4_temperature
-      - sensor.ruuvi_cd3c72708238_temperature
-      - sensor.ruuvi_d5206895da7a_temperature
-      - sensor.ruuvi_f1027fa47887_temperature
-      - sensor.ruuvi_f67412e29496_temperature
-      - sensor.ruuvi_f9308eac62b2_temperature
-
+      - sensor.autotalli_temperature
+      - sensor.jakotukki_temperature
+      - sensor.kodinhoito_temperature
+      - sensor.lastenhuone_temperature
+      - sensor.makuuhuone_temperature
+      - sensor.olohuone_temperature
+      - sensor.suihku_temperature
+      
   - platform: min_max
     name: ruuvi temperature max
     type: max
     entity_ids:
-      - sensor.ruuvi_c4206caf66f0_temperature
-      - sensor.ruuvi_ccf25e650bb4_temperature
-      - sensor.ruuvi_cd3c72708238_temperature
-      - sensor.ruuvi_d5206895da7a_temperature
-      - sensor.ruuvi_f1027fa47887_temperature
-      - sensor.ruuvi_f67412e29496_temperature
-      - sensor.ruuvi_f9308eac62b2_temperature
+      - sensor.autotalli_temperature
+      - sensor.jakotukki_temperature
+      - sensor.kodinhoito_temperature
+      - sensor.lastenhuone_temperature
+      - sensor.makuuhuone_temperature
+      - sensor.olohuone_temperature
+      - sensor.suihku_temperature
 
   - platform: min_max
     name: ruuvi temperature mean
     type: mean
     entity_ids:
-      - sensor.ruuvi_c4206caf66f0_temperature
-      - sensor.ruuvi_ccf25e650bb4_temperature
-      - sensor.ruuvi_cd3c72708238_temperature
-      - sensor.ruuvi_d5206895da7a_temperature
-      - sensor.ruuvi_f1027fa47887_temperature
-      - sensor.ruuvi_f67412e29496_temperature
-      - sensor.ruuvi_f9308eac62b2_temperature
+      - sensor.autotalli_temperature
+      - sensor.jakotukki_temperature
+      - sensor.kodinhoito_temperature
+      - sensor.lastenhuone_temperature
+      - sensor.makuuhuone_temperature
+      - sensor.olohuone_temperature
+      - sensor.suihku_temperature
 
 switch:
   platform: modbus

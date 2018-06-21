@@ -107,33 +107,48 @@
     view: yes
     icon: mdi:weather-partlycloudy
     entities:
-      - sensor.ruuvi_c4206caf66f0_battery
-      - sensor.ruuvi_c4206caf66f0_humidity
-      - sensor.ruuvi_c4206caf66f0_temperature
-      - sensor.ruuvi_ccf25e650bb4_battery
-      - sensor.ruuvi_ccf25e650bb4_humidity
-      - sensor.ruuvi_ccf25e650bb4_temperature
-      - sensor.ruuvi_cd3c72708238_battery
-      - sensor.ruuvi_cd3c72708238_humidity
-      - sensor.ruuvi_cd3c72708238_temperature
-      - sensor.ruuvi_d5206895da7a_battery
-      - sensor.ruuvi_d5206895da7a_humidity
-      - sensor.ruuvi_d5206895da7a_temperature
-      - sensor.ruuvi_f1027fa47887_battery
-      - sensor.ruuvi_f1027fa47887_humidity
-      - sensor.ruuvi_f1027fa47887_temperature
-      - sensor.ruuvi_f67412e29496_battery
-      - sensor.ruuvi_f67412e29496_humidity
-      - sensor.ruuvi_f67412e29496_temperature
-      - sensor.ruuvi_f9308eac62b2_battery
-      - sensor.ruuvi_f9308eac62b2_humidity
-      - sensor.ruuvi_f9308eac62b2_temperature
-      - sensor.ruuvi_ulkolampo_cee544df727e_battery
-      - sensor.ruuvi_ulkolampo_cee544df727e_humidity
-      - sensor.ruuvi_ulkolampo_cee544df727e_temperature
-      - sensor.ruuvi_auto_f805b0fa97be_battery
-      - sensor.ruuvi_auto_f805b0fa97be_humidity
-      - sensor.ruuvi_auto_f805b0fa97be_temperature
+      - group.lampotilat
+      - group.kosteus_prosentit
+      - group.sensorien_paristot
+
+  Kosteus Prosentit:
+    icon: mdi:weather-partlycloudy
+    entities:
+      - sensor.olohuone_humidity
+      - sensor.makuuhuone_humidity
+      - sensor.lastenhuone_humidity
+      - sensor.kodinhoito_humidity
+      - sensor.suihku_humidity
+      - sensor.autotalli_humidity
+      - sensor.jakotukki_humidity
+      - sensor.auto_humidity
+      - sensor.ulkolampo_humidity
+
+  Lampotilat:
+    icon: mdi:weather-partlycloudy
+    entities:
+      - sensor.olohuone_temperature
+      - sensor.makuuhuone_temperature
+      - sensor.lastenhuone_temperature
+      - sensor.kodinhoito_temperature
+      - sensor.suihku_temperature
+      - sensor.autotalli_temperature
+      - sensor.jakotukki_temperature
+      - sensor.auto_temperature
+      - sensor.ulkolampo_temperature
+
+  Sensorien Paristot:
+    icon: mdi:weather-partlycloudy
+    entities:
+      - sensor.olohuone_sensor_battery
+      - sensor.makuuhuone_sensor_battery
+      - sensor.lastenhuone_sensor_battery
+      - sensor.kodinhoito_sensor_battery
+      - sensor.suihku_sensor_battery
+      - sensor.autotalli_battery
+      - sensor.jakotukki_sensor_battery
+      - sensor.auto_sensor_battery
+      - sensor.ulkolampo_sensor_battery
 
   Auto:
     icon: mdi:car-sports
@@ -141,6 +156,8 @@
       - sensor.530e_iperformance_remaining_range_total
       - binary_sensor.530e_iperformance_connection_status
       - sensor.530e_iperformance_charging_time_remaining
+      - sensor.auto_temperature
+      - sensor.auto_humidity
 
   Lukot:
     icon: mdi:lock
@@ -156,4 +173,4 @@
       - weather.yweather
       - group.sisalampo
       - group.sisakosteus
-      #- group.auto
+      - group.auto
