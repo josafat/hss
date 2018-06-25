@@ -194,17 +194,17 @@ sensor:
 
   - platform: rest
     name: Lastenhuone Temperature
-    resource: http://192.168.1.248:8080/device?id=CC:F2:5E:65:0B:B4
+    resource: http://192.168.1.237:8080/device?id=CC:F2:5E:65:0B:B4
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
     name: Lastenhuone Humidity
-    resource: http://192.168.1.248:8080/device?id=CC:F2:5E:65:0B:B4
+    resource: http://192.168.1.237:8080/device?id=CC:F2:5E:65:0B:B4
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
     name: Lastenhuone Sensor Battery
-    resource: http://192.168.1.248:8080/device?id=CC:F2:5E:65:0B:B4
+    resource: http://192.168.1.237:8080/device?id=CC:F2:5E:65:0B:B4
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
@@ -226,49 +226,49 @@ sensor:
 
   - platform: rest
     name: Makuuhuone Temperature
-    resource: http://192.168.1.248:8080/device?id=D5:20:68:95:DA:7A
+    resource: http://192.168.1.237:8080/device?id=D5:20:68:95:DA:7A
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
     name: Makuuhuone Humidity
-    resource: http://192.168.1.248:8080/device?id=D5:20:68:95:DA:7A
+    resource: http://192.168.1.237:8080/device?id=D5:20:68:95:DA:7A
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
     name: Makuuhuone Sensor Battery
-    resource: http://192.168.1.248:8080/device?id=D5:20:68:95:DA:7A
+    resource: http://192.168.1.237:8080/device?id=D5:20:68:95:DA:7A
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
   - platform: rest
     name: Olohuone Temperature
-    resource: http://192.168.1.248:8080/device?id=F1:02:7F:A4:78:87
+    resource: http://192.168.1.237:8080/device?id=F1:02:7F:A4:78:87
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
     name: Olohuone Humidity
-    resource: http://192.168.1.248:8080/device?id=F1:02:7F:A4:78:87
+    resource: http://192.168.1.237:8080/device?id=F1:02:7F:A4:78:87
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
     name: Olohuone Sensor Battery
-    resource: http://192.168.1.248:8080/device?id=F1:02:7F:A4:78:87
+    resource: http://192.168.1.237:8080/device?id=F1:02:7F:A4:78:87
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
   - platform: rest
     name: Jakotukki Temperature
-    resource: http://192.168.1.248:8080/device?id=F6:74:12:E2:94:96
+    resource: http://192.168.1.237:8080/device?id=F6:74:12:E2:94:96
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
     name: Jakotukki Humidity
-    resource: http://192.168.1.248:8080/device?id=F6:74:12:E2:94:96
+    resource: http://192.168.1.237:8080/device?id=F6:74:12:E2:94:96
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
     name: Jakotukki Sensor Battery
-    resource: http://192.168.1.248:8080/device?id=F6:74:12:E2:94:96
+    resource: http://192.168.1.237:8080/device?id=F6:74:12:E2:94:96
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
@@ -321,7 +321,8 @@ sensor:
     unit_of_measurement: 'mV'
 
   - platform: min_max
-    name: ruuvi humidity mean
+    #name: ruuvi humidity mean
+    name: Sisakosteus
     type: mean
     entity_ids:
       - sensor.autotalli_humidity
@@ -369,7 +370,8 @@ sensor:
       - sensor.suihku_temperature
 
   - platform: min_max
-    name: ruuvi temperature mean
+    #name: ruuvi temperature mean
+    name: Sisalampo
     type: mean
     entity_ids:
       - sensor.autotalli_temperature
@@ -444,7 +446,10 @@ device_tracker:
 
 weather:
   - platform: yweather
+  #- platform: darksky
+  #  api_key: !secret darksky_apikey
 
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+

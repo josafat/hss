@@ -1,0 +1,70 @@
+name: Mollin Luola
+views:
+    # The name of a view will be used as tab title.
+    # Might be used for other things in the future.
+#  - name: Example
+  - tab_icon: mdi:home-assistant
+    # Each view can have a different theme applied. Theme should be defined in the frontend.
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
+        # The entities card will take a list of entities and show their state.
+#      - type: entities
+#        # Title of the entities card
+#        title: Example
+#        # The entities here will be shown in the same order as specified.
+#        entities:
+#          - input_boolean.switch_ac_kitchen
+#          - input_boolean.switch_ac_livingroom
+#          - input_boolean.switch_tv
+#
+#        # The filter card will filter available entities for certain criteria
+#        # and render it as type 'entities'.
+#      - type: entity-filter
+#        # Filter criteria. They are all optional.
+#        filter:
+#          - domain: input_boolean
+#            state: 'on'
+#        # This config will be passed to the card rendering the filter results
+#        card_config:
+#          title: Input booleans that are on
+
+      - type: glance
+        title: Ilmasto
+        entities:
+          - sensor.sisalampo
+          - sensor.sisakosteus
+          - sensor.ulkolampo_temperature
+          - sensor.iv_todellinen_teho
+
+      - type: weather-forecast
+        name: Saa
+        entity: weather.yweather
+        #entity: weather.dark_sky
+
+      - type: glance
+        title: Auto
+        entities:
+          - lock.530e_iperformance_lock
+          - sensor.530e_iperformance_charging_level_hv
+          - binary_sensor.530e_iperformance_connection_status
+          - sensor.530e_iperformance_remaining_range_total
+          - sensor.auto_temperature
+          - sensor.auto_humidity
+
+    # Specify a tab_icon if you want the view tab to be an icon.
+#  - tab_icon: mdi:home-assistant
+#    # Name of the view. Will be used as the tooltip for tab icon
+#    name: Second view
+#    cards:
+#      - type: entities
+#        title: Lots of Kitchen AC
+#        entities:
+#            # It is totally possible to render duplicates.
+#          - input_boolean.switch_ac_kitchen
+#          - input_boolean.switch_ac_kitchen
+#          - input_boolean.switch_ac_kitchen
+#          - input_boolean.switch_ac_kitchen
+#          - input_boolean.switch_ac_kitchen
+#          - input_boolean.switch_ac_kitchen
+
