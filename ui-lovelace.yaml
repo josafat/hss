@@ -52,6 +52,22 @@ views:
           - sensor.auto_temperature
           - sensor.auto_humidity
 
+  - tab_icon: mdi:air-conditioner
+    cards:
+       - type: entity-filter
+         filter:
+           - entity_id: '*iv*'
+         card_config:
+           title: Ilmanvaihto
+
+  - tab_icon: mdi:car
+    cards:
+       - type: entity-filter
+         filter:
+           - entity_id: '*530e*'
+         card_config:
+           title: Auto
+
     # Specify a tab_icon if you want the view tab to be an icon.
 #  - tab_icon: mdi:home-assistant
 #    # Name of the view. Will be used as the tooltip for tab icon

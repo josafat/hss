@@ -175,6 +175,12 @@ sensor:
       register: 50
       count: 1
       register_type: holding
+    - name: IV-Teho valitaan kayttopaneelilta
+      unit_of_measurement: '%'
+      slave: 1
+      register: 53
+      count: 1
+      register_type: holding
 
   - platform: rest
     name: Kodinhoito Temperature
