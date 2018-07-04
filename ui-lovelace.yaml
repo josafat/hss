@@ -28,6 +28,9 @@ views:
 #        # This config will be passed to the card rendering the filter results
 #        card_config:
 #          title: Input booleans that are on
+#
+      - type: plant-status
+        entity: plant.sisalla
 
       - type: glance
         title: Ilmasto
@@ -35,12 +38,11 @@ views:
           - sensor.sisalampo
           - sensor.sisakosteus
           - sensor.ulkolampo_temperature
-          - sensor.iv_todellinen_teho
 
       - type: weather-forecast
         name: Saa
-        entity: weather.yweather
-        #entity: weather.dark_sky
+        #entity: weather.yweather
+        entity: weather.dark_sky
 
       - type: glance
         title: Auto
@@ -67,6 +69,21 @@ views:
            - entity_id: '*530e*'
          card_config:
            title: Auto
+
+  - tab_icon: mdi:washing-machine
+    cards:
+       - type: glance
+         title: Pesukone Kaynnissa
+         entities:
+           - binary_sensor.washing_machine_running
+       - type: entity-filter
+         filter:
+           - entity_id: '*philio*'
+         card_config:
+           title: Pyykinpesukone
+
+# sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power
+
 
     # Specify a tab_icon if you want the view tab to be an icon.
 #  - tab_icon: mdi:home-assistant

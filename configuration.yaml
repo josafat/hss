@@ -388,6 +388,16 @@ sensor:
       - sensor.olohuone_temperature
       - sensor.suihku_temperature
 
+binary_sensor:
+  - platform: template
+    sensors:
+      washing_machine_running:
+        friendly_name: "Pesukone Kaynnissa"
+        delay_off:
+          minutes: 1
+        value_template: >-
+          {{ states('sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power')|float > 3 }}
+
 switch:
   platform: modbus
   coils:
@@ -451,9 +461,39 @@ device_tracker:
       - !secret unifi_ssid
 
 weather:
-  - platform: yweather
-  #- platform: darksky
-  #  api_key: !secret darksky_apikey
+  #- platform: yweather
+  - platform: darksky
+    api_key: !secret darksky_apikey
+    language: fi
+    monitored_conditions:
+      - summary
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - precip_accumulation
+      - icon
+      - temperature
+      - wind_speed
+      - wind_bearing
+      - cloud_cover
+      - humidity
+      - pressure
+      - minutely_summary
+      - hourly_summary
+      - daily_summary
+      - temperature_high
+      - temperature_low
+      - apparent_temperature_high
+      - apparent_temperature_low
+
+plant:
+  Sisalla:
+    sensors:
+      temperature: sensor.sisalampo
+      moisture: sensor.sisakosteus
+
+zwave:
+  usb_path: /dev/ttyACM0
 
 group: !include groups.yaml
 automation: !include automations.yaml
