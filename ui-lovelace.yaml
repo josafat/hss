@@ -82,6 +82,32 @@ views:
          card_config:
            title: Pyykinpesukone
 
+  - tab_icon: mdi:garage
+    cards:
+       - type: entity-filter
+         filter:
+           - entity_id: '*fibaro_system_fgms001zw5*'
+         card_config:
+           title: Liiketunnistin
+
+  - tab_icon: mdi:chip
+    cards:
+       - type: entity-filter
+         filter:
+           - entity_id: '*temperature*'
+         card_config:
+           title: Lampotilat
+       - type: entity-filter
+         filter:
+           - entity_id: '*humidity*'
+         card_config:
+           title: Kosteus
+       - type: entity-filter
+         filter:
+           - entity_id: '*battery*'
+         card_config:
+           title: Patterit
+
 # sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power
 
 
