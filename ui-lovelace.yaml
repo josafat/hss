@@ -1,76 +1,149 @@
 name: Mollin Luola
 views:
-    # The name of a view will be used as tab title.
-    # Might be used for other things in the future.
-#  - name: Example
-  - tab_icon: mdi:home-assistant
-    # Each view can have a different theme applied. Theme should be defined in the frontend.
+  - icon: mdi:home-assistant
     theme: dark-mode
-    # The cards to show on this view.
     cards:
-        # The entities card will take a list of entities and show their state.
-#      - type: entities
-#        # Title of the entities card
-#        title: Example
-#        # The entities here will be shown in the same order as specified.
-#        entities:
-#          - input_boolean.switch_ac_kitchen
-#          - input_boolean.switch_ac_livingroom
-#          - input_boolean.switch_tv
-#
-#        # The filter card will filter available entities for certain criteria
-#        # and render it as type 'entities'.
-#      - type: entity-filter
-#        # Filter criteria. They are all optional.
-#        filter:
-#          - domain: input_boolean
-#            state: 'on'
-#        # This config will be passed to the card rendering the filter results
-#        card_config:
-#          title: Input booleans that are on
-#
-      - type: plant-status
-        entity: plant.sisalla
-
-      - type: glance
-        title: Ilmasto
-        entities:
-          - sensor.sisalampo
-          - sensor.sisakosteus
-          - sensor.ulkolampo_temperature
-
+            #      - type: plant-status
+            #        entity: plant.sisalla
+            #      - type: glance
+            #        title: Ilmasto
+            #        entities:
+            #          - sensor.sisalampo
+            #          - sensor.sisakosteus
+            #          - sensor.ulkolampo_temperature
+      - type: vertical-stack
+        cards:
+           - type: picture
+             image: https://platinumrealestate.vegas/wp-content/uploads/2017/02/buying-a-home.jpg
+           - type: glance
+             entities:
+               - entity: sensor.sisalampo
+                 icon: mdi:thermometer
+               - entity: sensor.sisakosteus
+                 icon: mdi:water-percent
+               - entity: sensor.iv_raitisilman_lampotila
+                 icon: mdi:thermometer
       - type: weather-forecast
         name: Saa
-        #entity: weather.yweather
-        entity: weather.dark_sky
+        entity: weather.yweather
+        #entity: weather.dark_sky
+      - type: vertical-stack
+        cards:
+           - type: picture-entity
+             title: BMW 530e
+             image: https://cdn.drivemag.net/media/default/0001/42/bmw-5-series-530e-iperformance-06-9939-default-large.jpeg
+             entity: sensor.530e_iperformance_mileage
+             name: Mileage
+           - type: glance
+             entities: 
+              - entity: sensor.530e_iperformance_charging_level_hv
+                name: Varaus
+              - entity: sensor.530e_iperformance_remaining_range_total
+                name: Range
+              - sensor.530e_iperformance_charging_status
+              - entity: sensor.auto_temperature
+                name: SisaLampotila
+              - entity: binary_sensor.530e_iperformance_door_lock_state
+                name: Lukot
+                #- type: history-graph
+                #  title: Battery Status
+                #  entities:
+                #   - sensor.530e_iperformance_charging_level_hv
+                #      - type: glance
+                #        title: Auto
+                #        entities:
+                #          - lock.530e_iperformance_lock
+                #          - sensor.530e_iperformance_charging_level_hv
+                #          - binary_sensor.530e_iperformance_connection_status
+                #          - sensor.530e_iperformance_remaining_range_total
+                #          - sensor.auto_temperature
+                #          - sensor.auto_humidity
 
-      - type: glance
-        title: Auto
-        entities:
-          - lock.530e_iperformance_lock
-          - sensor.530e_iperformance_charging_level_hv
-          - binary_sensor.530e_iperformance_connection_status
-          - sensor.530e_iperformance_remaining_range_total
-          - sensor.auto_temperature
-          - sensor.auto_humidity
-
-  - tab_icon: mdi:air-conditioner
+  - icon: mdi:air-conditioner
+    title: ilmanvaihto
+    type: vertical-stack
     cards:
-       - type: entity-filter
-         filter:
-           - entity_id: '*iv*'
-         card_config:
-           title: Ilmanvaihto
+       - type: glance
+         entities:
+           - entity: sensor.iv_raitisilman_lampotila
+             name: Ulkolampotila
+           - entity: sensor.iv_poistoilman_kosteus_x5
+             name: Kosteus, Poisto
+           - entity: switch.iv_tehostus
+             name: Tehostus
+           - entity: sensor.iv_todellinen_teho
+             name: Teho
+           - entity: switch.iv_poissa
+             name: Poissa
+             tap_action: toggle
 
-  - tab_icon: mdi:car
+       - type: glance
+         entities:
+           - entity: switch.iv_jaahdytys_sallittu
+             name: Jaahdytys Sallittu
+             tap_action: toggle
+           - entity: switch.iv_lammitus_sallittu
+             name: Lammitys Sallittu
+             tap_action: toggle
+           - entity: switch.iv_pitkaan_poissa
+             name: Pitkaan Poissa
+             tap_action: toggle
+           - entity: switch.iv_kosteus_tehostus
+             name: Kosteus Tehostus
+             tap_action: toggle
+           - entity: sensor.iv_tilatieto
+             name: Tila
+
+       - type: entities
+         entities:
+           - entity: sensor.iv_48h_kosteustason_keskiarvo
+           - entity: sensor.iv_jateilman_lampotila_x4
+           - entity: sensor.iv_lampotilan_saatoportaat
+           - entity: sensor.iv_lto_hyotysuhde_poistopuolella
+           - entity: sensor.iv_lto_hyotysuhde_tulopuolella
+           - entity: sensor.iv_op1_lampomittaus_paalla
+           - entity: sensor.iv_paluuveden_lampotila_x8
+           - entity: sensor.iv_poistoilman_lampotila_ennen_lto_x8
+           - entity: sensor.iv_poistoilman_lampotila_x5
+           - entity: sensor.iv_tuloilman_lampotila_lton_jalkeen_x2
+           - entity: sensor.iv_tuloilman_lampotila_x3
+           - entity: switch.iv_lampotila_tehostus
+             #- entity: switch.iv_liesituuletin
+             #card:
+             #  title: Ilmanvaihto
+
+  - icon: mdi:car
+    type: vertical-stack
     cards:
-       - type: entity-filter
-         filter:
-           - entity_id: '*530e*'
-         card_config:
-           title: Auto
+       - type: picture-entity
+         title: BMW 530e
+         image: https://cdn.drivemag.net/media/default/0001/42/bmw-5-series-530e-iperformance-06-9939-default-large.jpeg
+         entity: sensor.530e_iperformance_mileage
+         name: Mileage
+       - type: glance
+         entities: 
+          - entity: sensor.530e_iperformance_charging_level_hv
+            name: Varaus
+          - entity: sensor.530e_iperformance_remaining_range_total
+            name: Range
+          - sensor.530e_iperformance_charging_status
+            #- binary_sensor.530e_iperformance_charging_status
+          - entity: sensor.auto_temperature
+            name: SisaLampotila
+          - entity: binary_sensor.530e_iperformance_door_lock_state
+            name: Lukot
+            #- type: history-graph
+            #  title: Battery Status
+            #  entities:
+            #   - sensor.530e_iperformance_charging_level_hv
 
-  - tab_icon: mdi:washing-machine
+#  - icon: mdi:car
+#    cards:
+#       - type: entities
+#         entities:
+#           - group.bmw530e
+
+  - icon: mdi:washing-machine
     cards:
        - type: glance
          title: Pesukone Kaynnissa
@@ -82,7 +155,7 @@ views:
          card_config:
            title: Pyykinpesukone
 
-  - tab_icon: mdi:garage
+  - icon: mdi:garage
     cards:
        - type: entity-filter
          filter:
@@ -90,7 +163,7 @@ views:
          card_config:
            title: Liiketunnistin
 
-  - tab_icon: mdi:chip
+  - icon: mdi:chip
     cards:
        - type: entity-filter
          filter:
@@ -112,7 +185,7 @@ views:
 
 
     # Specify a tab_icon if you want the view tab to be an icon.
-#  - tab_icon: mdi:home-assistant
+#  - icon: mdi:home-assistant
 #    # Name of the view. Will be used as the tooltip for tab icon
 #    name: Second view
 #    cards:

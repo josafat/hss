@@ -13,6 +13,9 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
+  auth_providers:
+   - type: homeassistant
+
 # Show links to resources in log and frontend
 #introduction:
 
@@ -432,7 +435,7 @@ tts:
   - platform: google
 
 # Cloud
-cloud:
+#cloud:
 
 bmw_connected_drive:
   bmw530e:
@@ -461,9 +464,9 @@ device_tracker:
       - !secret unifi_ssid
 
 weather:
-  #- platform: yweather
-  - platform: darksky
-    api_key: !secret darksky_apikey
+  - platform: yweather
+    #- platform: darksky
+    #api_key: !secret darksky_apikey
     language: fi
     monitored_conditions:
       - summary
@@ -491,6 +494,9 @@ plant:
     sensors:
       temperature: sensor.sisalampo
       moisture: sensor.sisakosteus
+
+recorder:
+  purge_keep_days: 10
 
 zwave:
   usb_path: /dev/ttyACM0
