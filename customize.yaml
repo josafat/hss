@@ -24,3 +24,7 @@ sun.sun:
   hidden: true
 sensor.yr_symbol:
   hidden: true
+sensor.530e_iperformance_charging_level_hv:
+  unit_of_measurement: '%'
+  #sensor.530e_iperformance_charging_status:
+  #  unit_of_measurement: '%'

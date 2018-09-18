@@ -13,8 +13,8 @@ views:
             #          - sensor.ulkolampo_temperature
       - type: vertical-stack
         cards:
-           - type: picture
-             image: https://platinumrealestate.vegas/wp-content/uploads/2017/02/buying-a-home.jpg
+                #           - type: picture
+                #             image: https://platinumrealestate.vegas/wp-content/uploads/2017/02/buying-a-home.jpg
            - type: glance
              entities:
                - entity: sensor.sisalampo
@@ -27,6 +27,17 @@ views:
         name: Saa
         entity: weather.yweather
         #entity: weather.dark_sky
+      - type: glance
+        name: Valot
+        entities:
+          - entity: light.alakerran_olohuone
+            name: AK Olohuone
+            tap_action: toggle
+          - entity: light.hue_white_lamp_1
+            name: AK Olohuone lamppu1
+            #- entity: light.hue_white_lamp_2
+          - entity: light.hue_white_lamp_3
+            name: AK Olohuone lamppu3
       - type: vertical-stack
         cards:
            - type: picture-entity
@@ -149,37 +160,88 @@ views:
          title: Pesukone Kaynnissa
          entities:
            - binary_sensor.washing_machine_running
-       - type: entity-filter
-         filter:
-           - entity_id: '*philio*'
-         card_config:
-           title: Pyykinpesukone
+       - type: entities
+         entities:
+           - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_alarm_level
+             name: Alarm Level
+           - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_alarm_type
+             name: Alarm Type
+           - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_energy
+             name: Energy
+           - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power
+             name: Power
+           - entity: switch.philio_technology_corporation_pan11_smart_energy_plug_in_switch_switch
+             name: Switch
 
   - icon: mdi:garage
     cards:
-       - type: entity-filter
-         filter:
-           - entity_id: '*fibaro_system_fgms001zw5*'
-         card_config:
-           title: Liiketunnistin
+       - type: entities
+         title: Liiketunnistin
+         entities:
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+             name: Temperature
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
+             name: Luminance
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
+             name: Alarm Level
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
+             name: Alarm Type
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
+             name: Burglar
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_general
+             name: General
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
+             name: Seismic Intensity
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
+             name: Source Node ID
+
 
   - icon: mdi:chip
     cards:
-       - type: entity-filter
-         filter:
-           - entity_id: '*temperature*'
-         card_config:
-           title: Lampotilat
-       - type: entity-filter
-         filter:
-           - entity_id: '*humidity*'
-         card_config:
-           title: Kosteus
-       - type: entity-filter
-         filter:
-           - entity_id: '*battery*'
-         card_config:
-           title: Patterit
+       - type: entities
+         title: Lampotilat
+         entities:
+           - entity: sensor.auto_temperature
+           - entity: sensor.autotalli_temperature
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+           - entity: sensor.jakotukki_temperature
+           - entity: sensor.kodinhoito_temperature
+           - entity: sensor.lastenhuone_temperature
+           - entity: sensor.makuuhuone_temperature
+           - entity: sensor.olohuone_temperature
+           - entity: sensor.ruuvi_temperature_max
+           - entity: sensor.ruuvi_temperature_min
+           - entity: sensor.suihku_temperature
+           - entity: sensor.ulkolampo_temperature
+           - entity: sensor.weathertomorrow_temperature
+       - type: entities
+         title: Kosteus
+         entities:
+           - entity: sensor.auto_humidity
+           - entity: sensor.autotalli_humidity
+           - entity: sensor.jakotukki_humidity
+           - entity: sensor.kodinhoito_humidity
+           - entity: sensor.lastenhuone_humidity
+           - entity: sensor.makuuhuone_humidity
+           - entity: sensor.olohuone_humidity
+           - entity: sensor.ruuvi_humidity_max
+           - entity: sensor.suihku_humidity
+           - entity: sensor.ulkolampo_humidity
+           - entity: sensor.weathertomorrow_humidity
+       - type: entities
+         title: Patterit
+         entities:
+           - entity: sensor.auto_sensor_battery
+           - entity: sensor.autotalli_battery
+           - entity: sensor.jakotukki_sensor_battery
+           - entity: sensor.juhanis_iphone_battery_level
+           - entity: sensor.juhanis_iphone_battery_state
+           - entity: sensor.kodinhoito_sensor_battery
+           - entity: sensor.lastenhuone_sensor_battery
+           - entity: sensor.makuuhuone_sensor_battery
+           - entity: sensor.olohuone_sensor_battery
+           - entity: sensor.suihku_sensor_battery
+           - entity: sensor.ulkolampo_sensor_battery
 
 # sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power
 

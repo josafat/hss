@@ -14,7 +14,8 @@ homeassistant:
   customize: !include customize.yaml
 
   auth_providers:
-   - type: homeassistant
+   - type: legacy_api_password
+     #- type: homeassistant
 
 # Show links to resources in log and frontend
 #introduction:
@@ -187,17 +188,17 @@ sensor:
 
   - platform: rest
     name: Kodinhoito Temperature
-    resource: http://192.168.1.248:8080/device?id=C4:20:6C:AF:66:F0
+    resource: http://127.0.0.1:8080/device?id=C4:20:6C:AF:66:F0
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
     name: Kodinhoito Humidity
-    resource: http://192.168.1.248:8080/device?id=C4:20:6C:AF:66:F0
+    resource: http://127.0.0.1:8080/device?id=C4:20:6C:AF:66:F0
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
     name: Kodinhoito Sensor Battery
-    resource: http://192.168.1.248:8080/device?id=C4:20:6C:AF:66:F0
+    resource: http://127.0.0.1:8080/device?id=C4:20:6C:AF:66:F0
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
@@ -219,17 +220,17 @@ sensor:
 
   - platform: rest
     name: Autotalli Temperature
-    resource: http://192.168.1.248:8080/device?id=CD:3C:72:70:82:38
+    resource: http://127.0.0.1:8080/device?id=CD:3C:72:70:82:38
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
     name: Autotalli Humidity
-    resource: http://192.168.1.248:8080/device?id=CD:3C:72:70:82:38
+    resource: http://127.0.0.1:8080/device?id=CD:3C:72:70:82:38
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
     name: Autotalli Battery
-    resource: http://192.168.1.248:8080/device?id=CD:3C:72:70:82:38
+    resource: http://127.0.0.1:8080/device?id=CD:3C:72:70:82:38
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
@@ -283,17 +284,17 @@ sensor:
 
   - platform: rest
     name: Suihku Temperature
-    resource: http://192.168.1.248:8080/device?id=F9:30:8E:AC:62:B2
+    resource: http://127.0.0.1:8080/device?id=F9:30:8E:AC:62:B2
     value_template: '{{ value_json.Temp }}'
     unit_of_measurement: °C
   - platform: rest
     name: Suihku Humidity
-    resource: http://192.168.1.248:8080/device?id=F9:30:8E:AC:62:B2
+    resource: http://127.0.0.1:8080/device?id=F9:30:8E:AC:62:B2
     value_template: '{{ value_json.Humidity }}'
     unit_of_measurement: '%'
   - platform: rest
     name: Suihku Sensor Battery
-    resource: http://192.168.1.248:8080/device?id=F9:30:8E:AC:62:B2
+    resource: http://127.0.0.1:8080/device?id=F9:30:8E:AC:62:B2
     value_template: '{{ value_json.Battery }}'
     unit_of_measurement: 'mV'
 
@@ -390,6 +391,14 @@ sensor:
       - sensor.makuuhuone_temperature
       - sensor.olohuone_temperature
       - sensor.suihku_temperature
+
+        #  - platform: arlo
+        #    monitored_conditions:
+        #      - captured_today
+        #      - last_capture
+        #      - total_cameras
+        #      - battery_level
+        #      - signal_strength
 
 binary_sensor:
   - platform: template
@@ -500,6 +509,14 @@ recorder:
 
 zwave:
   usb_path: /dev/ttyACM0
+
+arlo:
+  username: !secret arlo_username
+  password: !secret arlo_password
+
+  #camera:
+  #  - platform: arlo
+  #    ffmpeg_arguments: '-pred 1 -q:v 2'
 
 group: !include groups.yaml
 automation: !include automations.yaml
