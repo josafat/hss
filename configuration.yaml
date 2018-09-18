@@ -514,9 +514,9 @@ arlo:
   username: !secret arlo_username
   password: !secret arlo_password
 
-  #camera:
-  #  - platform: arlo
-  #    ffmpeg_arguments: '-pred 1 -q:v 2'
+camera:
+  - platform: arlo
+    ffmpeg_arguments: '-pred 1 -q:v 2'
 
 group: !include groups.yaml
 automation: !include automations.yaml
