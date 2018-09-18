@@ -38,6 +38,19 @@ views:
             #- entity: light.hue_white_lamp_2
           - entity: light.hue_white_lamp_3
             name: AK Olohuone lamppu3
+
+      - type: picture-glance
+        title: Terassi
+        entities:
+          - sensor.ulkolampo_temperature
+        camera_image: camera.52m18372b655e_terassi
+
+      - type: picture-glance
+        title: Ulko ovi
+        entities:
+          - sensor.ulkolampo_temperature
+        camera_image: camera.52m1837fb65db_ulkoovi
+
       - type: vertical-stack
         cards:
            - type: picture-entity

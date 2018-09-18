@@ -392,13 +392,13 @@ sensor:
       - sensor.olohuone_temperature
       - sensor.suihku_temperature
 
-        #  - platform: arlo
-        #    monitored_conditions:
-        #      - captured_today
-        #      - last_capture
-        #      - total_cameras
-        #      - battery_level
-        #      - signal_strength
+  - platform: arlo
+    monitored_conditions:
+      - captured_today
+      - last_capture
+      - total_cameras
+      - battery_level
+      - signal_strength
 
 binary_sensor:
   - platform: template
@@ -517,6 +517,9 @@ arlo:
 camera:
   - platform: arlo
     ffmpeg_arguments: '-pred 1 -q:v 2'
+
+alarm_control_panel:
+  - platform: arlo
 
 group: !include groups.yaml
 automation: !include automations.yaml
