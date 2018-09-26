@@ -400,6 +400,51 @@ sensor:
       - battery_level
       - signal_strength
 
+  - platform: template
+    sensors:
+      iv_tila:
+        friendly_name: "IV Tila"
+        value_template: >-
+          {% if is_state('sensor.iv_tilatieto', '0') %}
+            normaali
+          {% elif is_state('sensor.iv_tilatieto', '1') %}
+            MaxJaahdytys
+          {% elif is_state('sensor.iv_tilatieto', '2') %}
+            MaxLammitys
+          {% elif is_state('sensor.iv_tilatieto', '4') %}
+            HataSeis
+          {% elif is_state('sensor.iv_tilatieto', '8') %}
+            Seis
+          {% elif is_state('sensor.iv_tilatieto', '16') %}
+            Poissa
+          {% elif is_state('sensor.iv_tilatieto', '32') %}
+            PitkaanPoissa
+          {% elif is_state('sensor.iv_tilatieto', '46') %}
+            LampotilaTehostus
+          {% elif is_state('sensor.iv_tilatieto', '128') %}
+            CO2Tehostus
+          {% elif is_state('sensor.iv_tilatieto', '256') %}
+            RHTehostus
+          {% elif is_state('sensor.iv_tilatieto', '512') %}
+            Tehostus
+          {% elif is_state('sensor.iv_tilatieto', '1024') %}
+            Ylipaineistus
+          {% elif is_state('sensor.iv_tilatieto', '2048') %}
+            Liesituuletin
+          {% elif is_state('sensor.iv_tilatieto', '4096') %}
+            KeskusPolynimuri
+          {% elif is_state('sensor.iv_tilatieto', '8192') %}
+            SLPJaahdytys
+          {% elif is_state('sensor.iv_tilatieto', '16384') %}
+            KesaYoJaahdytys
+          {% elif is_state('sensor.iv_tilatieto', '32768') %}
+            EDXSulatus
+          {% else %}
+            JokuMuuMika
+          {% endif %}
+
+
+
 binary_sensor:
   - platform: template
     sensors:
