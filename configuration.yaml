@@ -442,6 +442,62 @@ sensor:
           {% else %}
             JokuMuuMika
           {% endif %}
+      iv_lamposaato:
+        friendly_name: "Lampotilasaadin"
+        value_template: >-
+          {% if is_state('sensor.iv_lampotilan_saatoportaat', '0') %}
+            EiMitaan
+          {% elif is_state('sensor.iv_lampotilan_saatoportaat', '1') %}
+            Jaahdytys
+          {% elif is_state('sensor.iv_lampotilan_saatoportaat', '2') %}
+            LTO
+          {% elif is_state('sensor.iv_lampotilan_saatoportaat', '4') %}
+            Lammitys
+          {% elif is_state('sensor.iv_lampotilan_saatoportaat', '5') %}
+            PorrasViive
+          {% elif is_state('sensor.iv_lampotilan_saatoportaat', '6') %}
+            KesaYoViilennys
+          {% elif is_state('sensor.iv_lampotilan_saatoportaat', '7') %}
+            Kaynnistys
+          {% elif is_state('sensor.iv_lampotilan_saatoportaat', '8') %}
+            Seis
+          {% elif is_state('sensor.iv_lampotilan_saatoportaat', '9') %}
+            LTOPuhdistus
+          {% elif is_state('sensor.iv_lampotilan_saatoportaat', '10') %}
+            EXTYksikonSulatus
+          {% else %}
+            MikaLie
+          {% endif %}
+      garage_status:
+        friendly_name: 'Garage Status'
+        value_template: '{% if states.cover.garage %}
+            {% if states.cover.garage.attributes["door_state"] == "open" %}
+              Open
+            {% elif states.cover.garage.attributes["door_state"] == "closed" %}
+              Closed
+            {% elif states.cover.garage.attributes["door_state"] == "opening" %}
+              Opening
+            {% elif states.cover.garage.attributes["door_state"] == "closing" %}
+              Closing
+            {% else %}
+              Unknown
+            {% endif %}
+            {% else %}
+            n/a
+            {% endif %}'
+      garage_car_present:
+        friendly_name: 'Honda in Garage'
+        value_template: '{% if states.cover.garage %}
+            {% if states.cover.garage.state == "open" %}
+              n/a
+            {% elif ((states.cover.garage.attributes["distance_sensor"] > 40) and (states.cover.garage.attributes["distance_sensor"] < 100)) %}
+              Yes
+            {% else %}
+              No
+            {% endif %}
+            {% else %}
+            n/a
+            {% endif %}'
 
 
 
@@ -565,6 +621,16 @@ camera:
 
 alarm_control_panel:
   - platform: arlo
+
+homekit:
+
+cover:
+  platform: opengarage
+  covers:
+      garage:
+        host: 192.168.200.100
+        device_key: !secret garage_key
+        name: garage
 
 group: !include groups.yaml
 automation: !include automations.yaml

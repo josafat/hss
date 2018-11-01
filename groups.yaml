@@ -174,3 +174,12 @@
       - group.sisalampo
       - group.sisakosteus
       - group.auto
+
+  garage:
+    name: Garage
+    entities:
+      - cover.garage
+      - sensor.garage_status
+      - sensor.garage_car_present
+
+

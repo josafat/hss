@@ -23,6 +23,11 @@ views:
                  icon: mdi:water-percent
                - entity: sensor.iv_raitisilman_lampotila
                  icon: mdi:thermometer
+      - type: entities
+        entities:
+          - entity: lock.polycontrol_danalock_v3_btze_locked
+            #icon: mdi:thermometer
+            name: Etuovi
       - type: weather-forecast
         name: Saa
         entity: weather.yweather
