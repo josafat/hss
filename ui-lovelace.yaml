@@ -130,7 +130,8 @@ views:
            - entity: sensor.iv_lampotilan_saatoportaat
            - entity: sensor.iv_lto_hyotysuhde_poistopuolella
            - entity: sensor.iv_lto_hyotysuhde_tulopuolella
-           - entity: sensor.iv_op1_lampomittaus_paalla
+           - entity: sensor.iv_lamposaato
+           - entity: sensor.iv_tila
            - entity: sensor.iv_paluuveden_lampotila_x8
            - entity: sensor.iv_poistoilman_lampotila_ennen_lto_x8
            - entity: sensor.iv_poistoilman_lampotila_x5
@@ -193,6 +194,11 @@ views:
 
   - icon: mdi:garage
     cards:
+       - type: entities
+         title: Ovi
+         entities:
+           - entity: cover.garage
+             name: Autotallin Ovi
        - type: entities
          title: Liiketunnistin
          entities:
