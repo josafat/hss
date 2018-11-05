@@ -574,10 +574,11 @@ device_tracker:
       - !secret unifi_ssid
 
 weather:
-  - platform: yweather
-    #- platform: darksky
-    #api_key: !secret darksky_apikey
+        #- platform: yweather
+  - platform: darksky
+    api_key: !secret darksky_apikey
     language: fi
+    name: Saa
     monitored_conditions:
       - summary
       - precip_type

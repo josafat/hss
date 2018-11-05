@@ -3,35 +3,93 @@ views:
   - icon: mdi:home-assistant
     theme: dark-mode
     cards:
-            #      - type: plant-status
-            #        entity: plant.sisalla
-            #      - type: glance
-            #        title: Ilmasto
-            #        entities:
-            #          - sensor.sisalampo
-            #          - sensor.sisakosteus
-            #          - sensor.ulkolampo_temperature
-      - type: vertical-stack
+
+      - type: horizontal-stack
         cards:
-                #           - type: picture
-                #             image: https://platinumrealestate.vegas/wp-content/uploads/2017/02/buying-a-home.jpg
-           - type: glance
+           - type: entity-filter
+             #title: Pesukone Kaynnissa
              entities:
-               - entity: sensor.sisalampo
-                 icon: mdi:thermometer
-               - entity: sensor.sisakosteus
-                 icon: mdi:water-percent
-               - entity: sensor.iv_raitisilman_lampotila
-                 icon: mdi:thermometer
-      - type: entities
-        entities:
-          - entity: lock.polycontrol_danalock_v3_btze_locked
-            #icon: mdi:thermometer
-            name: Etuovi
+               - entity: binary_sensor.washing_machine_running
+                 icon: mdi:washing-machine
+                 name: Pyykinpesu
+             state_filter:
+               - "on"
+             show_empty: false
+             card:
+               type: glance
+           - type: entity-filter
+             #title: Autotallin ovi
+             entities:
+               - entity: sensor.garage_status
+                 icon: mdi:garage-open
+                 name: Autotalli
+             state_filter:
+               - "Open"
+             show_empty: false
+             card:
+               type: glance
+           - type: conditional
+             conditions:
+               - entity: sensor.530e_iperformance_charging_status
+                 state_not: "FINISHED_FULLY_CHARGED"
+             card:
+               type: entities
+               entities:
+                 - entity: sensor.530e_iperformance_charging_status
+                   icon: mdi:car-sports
+                   name: Lataus
+
+             #      - type: horizontal-stack
+             #        cards:
+             #           - type: entity-filter
+             #             title: Pesukone Kaynnissa
+             #             entities:
+             #               - entity: binary_sensor.washing_machine_running
+             #                 icon: mdi:washing-machine
+             #                 name: Pyykinpesu
+             #             state_filter:
+             #               - "on"
+             #             show_empty: false
+             #           - type: entity-filter
+             #             title: Autotallin ovi
+             #             entities:
+             #               - entity: sensor.garage_status
+             #                 icon: mdi:garage-open
+             #                 name: Autotalli
+             #             state_filter:
+             #               - "Open"
+             #             show_empty: false
+
+             #      - type: glance
+             #        entities:
+             #          - entity: sensor.sisalampo
+             #            icon: mdi:thermometer
+             #          - entity: sensor.sisakosteus
+             #            icon: mdi:water-percent
+            #- entity: sensor.iv_raitisilman_lampotila
+            #  icon: mdi:thermometer
+            #  name: Ulkolampo
+                 #      - type: entities
+                 #        entities:
+                 #          - entity: lock.polycontrol_danalock_v3_btze_locked
+                 #            #icon: mdi:thermometer
+                 #            name: Etuovi
+                 
+      - type: horizontal-stack
+        cards:
+           - type: sensor
+             entity: sensor.sisalampo
+             icon: mdi:thermometer
+             hours_to_show: 168
+           - type: sensor
+             entity: sensor.sisakosteus
+             icon: mdi:water-percent
+             hours_to_show: 168
+
       - type: weather-forecast
-        name: Saa
-        entity: weather.yweather
-        #entity: weather.dark_sky
+        entity: weather.dark_sky
+      - type: iframe
+        url: https://embed.windy.com/embed2.html
       - type: glance
         name: Valot
         entities:
@@ -44,36 +102,37 @@ views:
           - entity: light.hue_white_lamp_3
             name: AK Olohuone lamppu3
 
-      - type: picture-glance
-        title: Terassi
-        entities:
-          - sensor.ulkolampo_temperature
-        camera_image: camera.52m18372b655e_terassi
+      - type: horizontal-stack
+        cards:
+           - type: picture-glance
+             title: Terassi
+             entities:
+               - camera.52m18372b655e_terassi
+             camera_image: camera.52m18372b655e_terassi
 
-      - type: picture-glance
-        title: Ulko ovi
-        entities:
-          - sensor.ulkolampo_temperature
-        camera_image: camera.52m1837fb65db_ulkoovi
+           - type: picture-glance
+             title: Etuovi
+             entities:
+               - camera.52m1837fb65db_ulkoovi
+             camera_image: camera.52m1837fb65db_ulkoovi
 
       - type: vertical-stack
         cards:
-           - type: picture-entity
-             title: BMW 530e
-             image: https://cdn.drivemag.net/media/default/0001/42/bmw-5-series-530e-iperformance-06-9939-default-large.jpeg
-             entity: sensor.530e_iperformance_mileage
-             name: Mileage
+           - type: entities
+             entities:
+               - entity: sensor.530e_iperformance_mileage
+                 icon: mdi:car-sports
            - type: glance
-             entities: 
-              - entity: sensor.530e_iperformance_charging_level_hv
-                name: Varaus
-              - entity: sensor.530e_iperformance_remaining_range_total
-                name: Range
-              - sensor.530e_iperformance_charging_status
-              - entity: sensor.auto_temperature
-                name: SisaLampotila
-              - entity: binary_sensor.530e_iperformance_door_lock_state
-                name: Lukot
+             entities:
+               - entity: sensor.530e_iperformance_charging_level_hv
+                 name: Varaus
+               - entity: sensor.530e_iperformance_remaining_range_total
+                 name: Range
+               - sensor.530e_iperformance_charging_status
+               - entity: sensor.auto_temperature
+                 name: SisaLampotila
+               - entity: binary_sensor.530e_iperformance_door_lock_state
+                 name: Lukot
                 #- type: history-graph
                 #  title: Battery Status
                 #  entities:
@@ -266,6 +325,23 @@ views:
            - entity: sensor.olohuone_sensor_battery
            - entity: sensor.suihku_sensor_battery
            - entity: sensor.ulkolampo_sensor_battery
+
+  - icon: mdi:play-network
+    cards:
+    - type: entities
+      entities:
+        - entity: media_player.alakerta
+          name: Sonos Alakerta
+        - entity: media_player.alakerta_2
+          name: Chromecast Alakerta
+        - entity: media_player.chromecastultra2983
+          name: Chromecast Vierashuone
+        - entity: media_player.chylakerta
+          name: Chromecast Ylakerta
+        - entity: media_player.olohuone
+          name: Sonos Olohuone
+
+
 
 # sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power
 
