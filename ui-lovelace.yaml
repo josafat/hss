@@ -107,11 +107,19 @@ views:
            - type: sensor
              entity: sensor.sisalampo
              icon: mdi:thermometer
-             hours_to_show: 168
+             hours_to_show: 24
+             accuracy: 96
            - type: sensor
              entity: sensor.sisakosteus
              icon: mdi:water-percent
-             hours_to_show: 168
+             hours_to_show: 24
+             accuracy: 96
+           - type: sensor
+             entity: sensor.iv_raitisilman_lampotila
+             name: Ulkolampotila
+             icon: mdi:thermometer
+             hours_to_show: 24
+             accuracy: 96
 
       - type: weather-forecast
         entity: weather.saa
@@ -137,6 +145,7 @@ views:
              icon: mdi:battery
              hours_to_show: 24
              name: Auton Akut
+             accuracy: 96
            - type: entities
              entities:
                - entity: sensor.530e_iperformance_charging_status
