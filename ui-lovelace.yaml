@@ -38,6 +38,33 @@ views:
                  - entity: sensor.530e_iperformance_charging_status
                    icon: mdi:car-sports
                    name: Lataus
+           - type: conditional
+             conditions:
+               - entity: group.all_locks
+                 state_not: "locked"
+             card:
+               type: glance
+               entities:
+                 - entity: group.all_locks
+           - type: conditional
+             conditions:
+               - entity: group.all_lights
+                 state_not: off
+             card:
+               type: glance
+               entities:
+                 - entity: group.all_lights
+           - type: conditional
+             conditions:
+               - entity: sensor.iv_tila
+                 state_not: "normaali"
+             card:
+               type: glance
+               entities:
+                 - entity: sensor.iv_tila
+
+                   #icon: mdi:car-sports
+                   #name: Lataus
 
              #      - type: horizontal-stack
              #        cards:
@@ -87,20 +114,39 @@ views:
              hours_to_show: 168
 
       - type: weather-forecast
-        entity: weather.dark_sky
-      - type: iframe
-        url: https://embed.windy.com/embed2.html
-      - type: glance
-        name: Valot
-        entities:
-          - entity: light.alakerran_olohuone
-            name: AK Olohuone
-            tap_action: toggle
-          - entity: light.hue_white_lamp_1
-            name: AK Olohuone lamppu1
-            #- entity: light.hue_white_lamp_2
-          - entity: light.hue_white_lamp_3
-            name: AK Olohuone lamppu3
+        entity: weather.saa
+        #entity: weather.dark_sky
+        #      - type: iframe
+        #        url: https://embed.windy.com/embed2.html
+        #      - type: glance
+        #        name: Valot
+        #        entities:
+        #          - entity: light.alakerran_olohuone
+        #            name: AK Olohuone
+        #            tap_action: toggle
+        #          - entity: light.hue_white_lamp_1
+        #            name: AK Olohuone lamppu1
+        #            #- entity: light.hue_white_lamp_2
+        #          - entity: light.hue_white_lamp_3
+        #            name: AK Olohuone lamppu3
+
+      - type: horizontal-stack
+        cards:
+           - type: sensor
+             entity: sensor.530e_iperformance_charging_level_hv
+             icon: mdi:battery
+             hours_to_show: 24
+             name: Auton Akut
+           - type: entities
+             entities:
+               - entity: sensor.530e_iperformance_charging_status
+                 name: Lataus
+               - entity: sensor.530e_iperformance_mileage
+                 name: Km
+               - entity: sensor.530e_iperformance_remaining_range_total
+                 name: Range
+               - entity: sensor.auto_temperature
+                 name: Sisalampo
 
       - type: horizontal-stack
         cards:
@@ -116,23 +162,40 @@ views:
                - camera.52m1837fb65db_ulkoovi
              camera_image: camera.52m1837fb65db_ulkoovi
 
-      - type: vertical-stack
-        cards:
-           - type: entities
-             entities:
-               - entity: sensor.530e_iperformance_mileage
-                 icon: mdi:car-sports
-           - type: glance
-             entities:
-               - entity: sensor.530e_iperformance_charging_level_hv
-                 name: Varaus
-               - entity: sensor.530e_iperformance_remaining_range_total
-                 name: Range
-               - sensor.530e_iperformance_charging_status
-               - entity: sensor.auto_temperature
-                 name: SisaLampotila
-               - entity: binary_sensor.530e_iperformance_door_lock_state
-                 name: Lukot
+             #           - type: entities
+             #             entities:
+             #               - entity: sensor.530e_iperformance_mileage
+             #                 icon: mdi:car-sports
+             #           - type: glance
+             #             entities:
+             #               - entity: sensor.530e_iperformance_charging_level_hv
+             #                 name: Varaus
+             #               - entity: sensor.530e_iperformance_remaining_range_total
+             #                 name: Range
+             #               - sensor.530e_iperformance_charging_status
+             #               - entity: sensor.auto_temperature
+             #                 name: SisaLampotila
+             #               - entity: binary_sensor.530e_iperformance_door_lock_state
+             #                 name: Lukot
+
+
+             #      - type: vertical-stack
+             #        cards:
+             #           - type: entities
+             #             entities:
+             #               - entity: sensor.530e_iperformance_mileage
+             #                 icon: mdi:car-sports
+             #           - type: glance
+             #             entities:
+             #               - entity: sensor.530e_iperformance_charging_level_hv
+             #                 name: Varaus
+             #               - entity: sensor.530e_iperformance_remaining_range_total
+             #                 name: Range
+             #               - sensor.530e_iperformance_charging_status
+             #               - entity: sensor.auto_temperature
+             #                 name: SisaLampotila
+             #               - entity: binary_sensor.530e_iperformance_door_lock_state
+             #                 name: Lukot
                 #- type: history-graph
                 #  title: Battery Status
                 #  entities:
@@ -224,13 +287,29 @@ views:
             #- type: history-graph
             #  title: Battery Status
             #  entities:
-            #   - sensor.530e_iperformance_charging_level_hv
+            #   - sensor.530e_iperformance_charging_level_hv 
 
 #  - icon: mdi:car
 #    cards:
 #       - type: entities
 #         entities:
 #           - group.bmw530e
+
+
+  - icon: mdi:lightbulb
+    cards:
+      - type: glance
+        name: Valot
+        entities:
+          - entity: light.alakerran_olohuone
+            name: AK Olohuone
+            tap_action: toggle
+          - entity: light.hue_white_lamp_1
+            name: AK Olohuone lamppu1
+            #- entity: light.hue_white_lamp_2
+          - entity: light.hue_white_lamp_3
+            name: AK Olohuone lamppu3
+
 
   - icon: mdi:washing-machine
     cards:

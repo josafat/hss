@@ -360,7 +360,7 @@ sensor:
     type: min
     entity_ids:
       - sensor.autotalli_temperature
-      - sensor.jakotukki_temperature
+        #      - sensor.jakotukki_temperature
       - sensor.kodinhoito_temperature
       - sensor.lastenhuone_temperature
       - sensor.makuuhuone_temperature
@@ -372,7 +372,7 @@ sensor:
     type: max
     entity_ids:
       - sensor.autotalli_temperature
-      - sensor.jakotukki_temperature
+        #      - sensor.jakotukki_temperature
       - sensor.kodinhoito_temperature
       - sensor.lastenhuone_temperature
       - sensor.makuuhuone_temperature
@@ -574,9 +574,9 @@ device_tracker:
       - !secret unifi_ssid
 
 weather:
-        #- platform: yweather
-  - platform: darksky
-    api_key: !secret darksky_apikey
+  - platform: yweather
+        #  - platform: darksky
+        #api_key: !secret darksky_apikey
     language: fi
     name: Saa
     monitored_conditions:
