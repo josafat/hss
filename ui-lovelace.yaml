@@ -33,11 +33,14 @@ views:
                - entity: sensor.530e_iperformance_charging_status
                  state_not: "FINISHED_FULLY_CHARGED"
              card:
-               type: entities
+               type: glance
                entities:
-                 - entity: sensor.530e_iperformance_charging_status
+                 - entity: sensor.530e_iperformance_charging_level_hv
                    icon: mdi:car-sports
-                   name: Lataus
+                   name: Lataus %
+                 - entity: sensor.530e_iperformance_charging_time_remaining
+                   icon: mdi:car-sports
+                   name: Lataus aika
            - type: conditional
              conditions:
                - entity: group.all_locks
@@ -140,12 +143,15 @@ views:
 
       - type: horizontal-stack
         cards:
-           - type: sensor
+           - type: gauge
+             title: Auton Akku
+             unit_of_measurement: '%'
              entity: sensor.530e_iperformance_charging_level_hv
-             icon: mdi:battery
-             hours_to_show: 24
-             name: Auton Akut
-             accuracy: 96
+             severity:
+               green: 90
+               yellow: 45
+               red: 20
+
            - type: entities
              entities:
                - entity: sensor.530e_iperformance_charging_status
