@@ -331,29 +331,29 @@ sensor:
     unit_of_measurement: 'mV'
 
   - platform: min_max
-    #name: ruuvi humidity mean
+    name: ruuvi humidity mean
     name: Sisakosteus
     type: mean
     entity_ids:
-      - sensor.autotalli_humidity
       - sensor.jakotukki_humidity
       - sensor.kodinhoito_humidity
       - sensor.lastenhuone_humidity
       - sensor.makuuhuone_humidity
       - sensor.olohuone_humidity
       - sensor.suihku_humidity
+            # - sensor.autotalli_humidity
 
   - platform: min_max
     name: ruuvi humidity max
     type: max
     entity_ids:
-      - sensor.autotalli_humidity
       - sensor.jakotukki_humidity
       - sensor.kodinhoito_humidity
       - sensor.lastenhuone_humidity
       - sensor.makuuhuone_humidity
       - sensor.olohuone_humidity
       - sensor.suihku_humidity
+            #- sensor.autotalli_humidity
       
   - platform: min_max
     name: ruuvi temperature min
@@ -470,7 +470,8 @@ sensor:
           {% endif %}
       garage_status:
         friendly_name: 'Garage Status'
-        value_template: '{% if states.cover.garage %}
+        value_template: >-
+          {% if states.cover.garage %}
             {% if states.cover.garage.attributes["door_state"] == "open" %}
               Open
             {% elif states.cover.garage.attributes["door_state"] == "closed" %}
@@ -482,12 +483,13 @@ sensor:
             {% else %}
               Unknown
             {% endif %}
-            {% else %}
+          {% else %}
             n/a
-            {% endif %}'
+          {% endif %}
       garage_car_present:
-        friendly_name: 'Honda in Garage'
-        value_template: '{% if states.cover.garage %}
+        friendly_name: 'Auto tallissa'
+        value_template: >-
+          {% if states.cover.garage %}
             {% if states.cover.garage.state == "open" %}
               n/a
             {% elif ((states.cover.garage.attributes["distance_sensor"] > 40) and (states.cover.garage.attributes["distance_sensor"] < 100)) %}
@@ -495,29 +497,41 @@ sensor:
             {% else %}
               No
             {% endif %}
-            {% else %}
+          {% else %}
             n/a
-            {% endif %}'
+          {% endif %}
 
-
+      washing_machine:
+        friendly_name: "Pesukone"
+        value_template: >-
+          {% if states('sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power')|float > 3 %}
+             Washing
+          {% elif states('sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power')|float > 1 %}
+             Ready
+          {% else %}
+             Off
+          {% endif %}
 
 binary_sensor:
   - platform: template
     sensors:
-      washing_machine_running:
-        friendly_name: "Pesukone Kaynnissa"
-        delay_off:
-          minutes: 1
-        value_template: >-
-          {{ states('sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power')|float > 3 }}
-
-      washing_machine_ready:
-        friendly_name: "Pesukone Valmis"
-        delay_off:
-          minutes: 1
-        value_template: >-
-          {{ states('sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power')|float < 3 and
-             states('sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power')|float > 1 }}
+      korkea_kosteus:
+        friendly_name: "Korkea Kosteus"
+        #delay_off:
+        #  minutes: 1
+        entity_id:
+          - sensor.sisakosteus
+        value_template: '{{ states.sensor.sisakosteus.attributes.max_value|float - 10 > states.sensor.sisakosteus.attributes.mean|float }}'
+  - platform: template
+    sensors:
+      autotalli_kosteus:
+        friendly_name: "Autotalli Kosteus"
+        #delay_off:
+        #  minutes: 1
+        entity_id:
+          - sensor.sisakosteus
+          - sensor.autotalli_humidity
+        value_template: '{{ states.sensor.autotalli_humidity|float - 10 > states.sensor.sisakosteus.attributes.mean|float }}'
 
 switch:
   platform: modbus

@@ -9,24 +9,48 @@ views:
            - type: entity-filter
              #title: Pesukone Kaynnissa
              entities:
-               - entity: binary_sensor.washing_machine_running
-                 icon: mdi:washing-machine
-                 name: Pyykinpesu
-                 style: "color: yellow"
+               - entity: binary_sensor.korkea_kosteus
+                 #icon: mdi:washing-machine
+                 name: Korkea kosteus
+                 style: "color: red"
              state_filter:
-               - "on"
+               - on
              show_empty: false
              card:
                type: glance
            - type: entity-filter
              #title: Pesukone Kaynnissa
              entities:
-               - entity: binary_sensor.washing_machine_ready
+               - entity: binary_sensor.autotalli_kosteus
+                 #icon: mdi:washing-machine
+                 name: Kosteus Autotalli
+                 style: "color: red"
+             state_filter:
+               - on
+             show_empty: false
+             card:
+               type: glance
+           - type: entity-filter
+             #title: Pesukone Kaynnissa
+             entities:
+               - entity: sensor.washing_machine
                  icon: mdi:washing-machine
-                 name: Pyykinpesu valmis
+                 name: Pyykinpesu
+                 style: "color: yellow"
+             state_filter:
+               - "Running"
+             show_empty: false
+             card:
+               type: glance
+           - type: entity-filter
+             #title: Pesukone Kaynnissa
+             entities:
+               - entity: sensor.washing_machine
+                 icon: mdi:washing-machine
+                 name: Valmis
                  style: "color: green"
              state_filter:
-               - "on"
+               - "Washing"
              show_empty: false
              card:
                type: glance
@@ -371,7 +395,7 @@ views:
        - type: glance
          title: Pesukone Kaynnissa
          entities:
-           - binary_sensor.washing_machine_running
+           - sensor.washing_machine
        - type: entities
          entities:
            - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_alarm_level
