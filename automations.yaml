@@ -1,1 +1,9 @@
-[]
+- id: '1542974389240'
+  alias: Autotalli auki
+  trigger:
+  - entity_id: cover.garage
+    from: closed
+    platform: state
+    to: open
+  condition: []
+  action: []

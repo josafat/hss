@@ -511,6 +511,14 @@ binary_sensor:
         value_template: >-
           {{ states('sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power')|float > 3 }}
 
+      washing_machine_ready:
+        friendly_name: "Pesukone Valmis"
+        delay_off:
+          minutes: 1
+        value_template: >-
+          {{ states('sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power')|float < 3 and
+             states('sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power')|float > 1 }}
+
 switch:
   platform: modbus
   coils:

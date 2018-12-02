@@ -12,6 +12,19 @@ views:
                - entity: binary_sensor.washing_machine_running
                  icon: mdi:washing-machine
                  name: Pyykinpesu
+                 style: "color: yellow"
+             state_filter:
+               - "on"
+             show_empty: false
+             card:
+               type: glance
+           - type: entity-filter
+             #title: Pesukone Kaynnissa
+             entities:
+               - entity: binary_sensor.washing_machine_ready
+                 icon: mdi:washing-machine
+                 name: Pyykinpesu valmis
+                 style: "color: green"
              state_filter:
                - "on"
              show_empty: false
@@ -35,12 +48,12 @@ views:
              card:
                type: glance
                entities:
-                 - entity: sensor.530e_iperformance_charging_level_hv
+                 - type: sensor
+                   entity: sensor.530e_iperformance_charging_level_hv
                    icon: mdi:car-sports
+                   hours_to_show: 24
+                   accuracy: 96
                    name: Lataus %
-                 - entity: sensor.530e_iperformance_charging_time_remaining
-                   icon: mdi:car-sports
-                   name: Lataus aika
            - type: conditional
              conditions:
                - entity: group.all_locks
@@ -109,17 +122,19 @@ views:
         cards:
            - type: sensor
              entity: sensor.sisalampo
+             name: Sisalla
              icon: mdi:thermometer
              hours_to_show: 24
              accuracy: 96
            - type: sensor
              entity: sensor.sisakosteus
+             name: Sisalla
              icon: mdi:water-percent
              hours_to_show: 24
              accuracy: 96
            - type: sensor
              entity: sensor.iv_raitisilman_lampotila
-             name: Ulkolampotila
+             name: Ulkona
              icon: mdi:thermometer
              hours_to_show: 24
              accuracy: 96
@@ -141,27 +156,27 @@ views:
         #          - entity: light.hue_white_lamp_3
         #            name: AK Olohuone lamppu3
 
-      - type: horizontal-stack
-        cards:
-           - type: gauge
-             title: Auton Akku
-             unit_of_measurement: '%'
-             entity: sensor.530e_iperformance_charging_level_hv
-             severity:
-               green: 90
-               yellow: 45
-               red: 20
-
-           - type: entities
-             entities:
-               - entity: sensor.530e_iperformance_charging_status
-                 name: Lataus
-               - entity: sensor.530e_iperformance_mileage
-                 name: Km
-               - entity: sensor.530e_iperformance_remaining_range_total
-                 name: Range
-               - entity: sensor.auto_temperature
-                 name: Sisalampo
+        #      - type: horizontal-stack
+        #        cards:
+        #           - type: gauge
+        #             title: Auton Akku
+        #             unit_of_measurement: '%'
+        #             entity: sensor.530e_iperformance_charging_level_hv
+        #             severity:
+        #               green: 90
+        #               yellow: 45
+        #               red: 20
+        #
+        #           - type: entities
+        #             entities:
+        #               - entity: sensor.530e_iperformance_charging_status
+        #                 name: Lataus
+        #               - entity: sensor.530e_iperformance_mileage
+        #                 name: Km
+        #               - entity: sensor.530e_iperformance_remaining_range_total
+        #                 name: Range
+        #               - entity: sensor.auto_temperature
+        #                 name: Sisalampo
 
       - type: horizontal-stack
         cards:
@@ -303,6 +318,31 @@ views:
             #  title: Battery Status
             #  entities:
             #   - sensor.530e_iperformance_charging_level_hv 
+       - type: entities
+         title: Ovi
+         entities:
+           - entity: cover.garage
+             name: Autotallin Ovi
+       - type: entities
+         title: Liiketunnistin
+         entities:
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+             name: Temperature
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
+             name: Luminance
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
+             name: Alarm Level
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
+             name: Alarm Type
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
+             name: Burglar
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_general
+             name: General
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
+             name: Seismic Intensity
+           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
+             name: Source Node ID
+
 
 #  - icon: mdi:car
 #    cards:
@@ -344,33 +384,6 @@ views:
              name: Power
            - entity: switch.philio_technology_corporation_pan11_smart_energy_plug_in_switch_switch
              name: Switch
-
-  - icon: mdi:garage
-    cards:
-       - type: entities
-         title: Ovi
-         entities:
-           - entity: cover.garage
-             name: Autotallin Ovi
-       - type: entities
-         title: Liiketunnistin
-         entities:
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
-             name: Temperature
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
-             name: Luminance
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
-             name: Alarm Level
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
-             name: Alarm Type
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
-             name: Burglar
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_general
-             name: General
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
-             name: Seismic Intensity
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
-             name: Source Node ID
 
 
   - icon: mdi:chip
