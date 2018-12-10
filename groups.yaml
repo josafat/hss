@@ -90,18 +90,18 @@
       - switch.iv_poissa
       - switch.iv_tehostus
 
-  Sisalampo:
-    control: hidden
-    entities:
-      - sensor.ruuvi_temperature_max
-      - sensor.ruuvi_temperature_mean
-      - sensor.ruuvi_temperature_min
+        #  Sisalampo:
+        #    control: hidden
+        #    entities:
+        #      - sensor.ruuvi_temperature_max
+        #      - sensor.ruuvi_temperature_mean
+        #      - sensor.ruuvi_temperature_min
 
-  Sisakosteus:
-    control: hidden
-    entities:
-      - sensor.ruuvi_humidity_max
-      - sensor.ruuvi_humidity_mean
+        #  Sisakosteus:
+        #    control: hidden
+        #    entities:
+        #      - sensor.ruuvi_humidity_max
+        #      - sensor.ruuvi_humidity_mean
 
   Ruuvit:
     view: yes

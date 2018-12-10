@@ -332,7 +332,6 @@ sensor:
 
   - platform: min_max
     name: ruuvi humidity mean
-    name: Sisakosteus
     type: mean
     entity_ids:
       - sensor.jakotukki_humidity
@@ -343,54 +342,54 @@ sensor:
       - sensor.suihku_humidity
             # - sensor.autotalli_humidity
 
-  - platform: min_max
-    name: ruuvi humidity max
-    type: max
-    entity_ids:
-      - sensor.jakotukki_humidity
-      - sensor.kodinhoito_humidity
-      - sensor.lastenhuone_humidity
-      - sensor.makuuhuone_humidity
-      - sensor.olohuone_humidity
-      - sensor.suihku_humidity
-            #- sensor.autotalli_humidity
+        #- platform: min_max
+        #  name: ruuvi humidity max
+        #  type: max
+        #  entity_ids:
+        #    - sensor.jakotukki_humidity
+        #    - sensor.kodinhoito_humidity
+        #    - sensor.lastenhuone_humidity
+        #    - sensor.makuuhuone_humidity
+        #    - sensor.olohuone_humidity
+        #    - sensor.suihku_humidity
+        #          #- sensor.autotalli_humidity
       
   - platform: min_max
-    name: ruuvi temperature min
-    type: min
-    entity_ids:
-      - sensor.autotalli_temperature
-        #      - sensor.jakotukki_temperature
-      - sensor.kodinhoito_temperature
-      - sensor.lastenhuone_temperature
-      - sensor.makuuhuone_temperature
-      - sensor.olohuone_temperature
-      - sensor.suihku_temperature
-      
-  - platform: min_max
-    name: ruuvi temperature max
-    type: max
-    entity_ids:
-      - sensor.autotalli_temperature
-        #      - sensor.jakotukki_temperature
-      - sensor.kodinhoito_temperature
-      - sensor.lastenhuone_temperature
-      - sensor.makuuhuone_temperature
-      - sensor.olohuone_temperature
-      - sensor.suihku_temperature
-
-  - platform: min_max
-    #name: ruuvi temperature mean
-    name: Sisalampo
+    name: ruuvi temperature mean
     type: mean
     entity_ids:
       - sensor.autotalli_temperature
-      - sensor.jakotukki_temperature
+        #      - sensor.jakotukki_temperature
       - sensor.kodinhoito_temperature
       - sensor.lastenhuone_temperature
       - sensor.makuuhuone_temperature
       - sensor.olohuone_temperature
       - sensor.suihku_temperature
+      
+        #  - platform: min_max
+        #    name: ruuvi temperature max
+        #    type: max
+        #    entity_ids:
+        #      - sensor.autotalli_temperature
+        #        #      - sensor.jakotukki_temperature
+        #      - sensor.kodinhoito_temperature
+        #      - sensor.lastenhuone_temperature
+        #      - sensor.makuuhuone_temperature
+        #      - sensor.olohuone_temperature
+        #      - sensor.suihku_temperature
+
+        #  - platform: min_max
+        #    #name: ruuvi temperature mean
+        #    name: Sisalampo
+        #    type: mean
+        #    entity_ids:
+        #      - sensor.autotalli_temperature
+        #      - sensor.jakotukki_temperature
+        #      - sensor.kodinhoito_temperature
+        #      - sensor.lastenhuone_temperature
+        #      - sensor.makuuhuone_temperature
+        #      - sensor.olohuone_temperature
+        #      - sensor.suihku_temperature
 
   - platform: arlo
     monitored_conditions:
@@ -645,7 +644,7 @@ camera:
 alarm_control_panel:
   - platform: arlo
 
-homekit:
+#homekit:
 
 cover:
   platform: opengarage
@@ -655,6 +654,7 @@ cover:
         device_key: !secret garage_key
         name: garage
 
+notify: !include notify.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml

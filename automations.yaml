@@ -1,9 +1,42 @@
-- id: '1542974389240'
-  alias: Autotalli auki
+- alias: Notify on Garage Open
   trigger:
-  - entity_id: cover.garage
-    from: closed
+    entity_id: cover.garage
+    from: "closed"
     platform: state
-    to: open
-  condition: []
-  action: []
+    to: "open"
+  action:
+    service: notify.NOTIFIER_NAME
+    data:
+      message: "Garage door open"
+      data:
+        push:
+          badge: 1
+
+- alias: Notify on Washing Machine Ready
+  trigger:
+    entity_id: sensor.washing_machine
+    from: "Washing"
+    platform: state
+    to: "Ready"
+  action:
+    service: notify.NOTIFIER_NAME
+    data:
+      message: "Washing machine ready"
+      data:
+        push:
+          badge: 1
+
+          #- alias: Notify on High Humidity
+          #  trigger:
+          #    entity_id: binary_sensor.korkea_kosteus
+          #    from: off
+          #    platform: state
+          #    to: on
+          #  action:
+          #    service: notify.NOTIFIER_NAME
+          #    data:
+          #      message: High Humidity
+          #      data:
+          #        push:
+          #          badge: 1
+          #

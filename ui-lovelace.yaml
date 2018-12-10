@@ -1,107 +1,109 @@
 name: Mollin Luola
 views:
-  - icon: mdi:home-assistant
+  - id: 0  # Automatically created id
+    icon: mdi:home-assistant
     theme: dark-mode
     cards:
 
-      - type: horizontal-stack
+      - id: 3ed4f885535143b5be396c8a85cab7ec  # Automatically created id
+        type: horizontal-stack
         cards:
-           - type: entity-filter
+          - type: entity-filter
              #title: Pesukone Kaynnissa
-             entities:
-               - entity: binary_sensor.korkea_kosteus
+            entities:
+              - entity: binary_sensor.korkea_kosteus
                  #icon: mdi:washing-machine
-                 name: Korkea kosteus
-                 style: "color: red"
-             state_filter:
-               - on
-             show_empty: false
-             card:
-               type: glance
-           - type: entity-filter
+                name: Korkea kosteus
+                style: "color: red"
+            state_filter:
+              - on
+            show_empty: false
+            card:
+              type: glance
+          - type: entity-filter
              #title: Pesukone Kaynnissa
-             entities:
-               - entity: binary_sensor.autotalli_kosteus
+            entities:
+              - entity: binary_sensor.autotalli_kosteus
                  #icon: mdi:washing-machine
-                 name: Kosteus Autotalli
-                 style: "color: red"
-             state_filter:
-               - on
-             show_empty: false
-             card:
-               type: glance
-           - type: entity-filter
+                name: Kosteus Autotalli
+                style: "color: red"
+            state_filter:
+              - on
+            show_empty: false
+            card:
+              type: glance
+          - type: entity-filter
              #title: Pesukone Kaynnissa
-             entities:
-               - entity: sensor.washing_machine
-                 icon: mdi:washing-machine
-                 name: Pyykinpesu
-                 style: "color: yellow"
-             state_filter:
-               - "Running"
-             show_empty: false
-             card:
-               type: glance
-           - type: entity-filter
+            entities:
+              - entity: sensor.washing_machine
+                icon: mdi:washing-machine
+                name: Pyykinpesu
+                style: "color: yellow"
+            state_filter:
+              - "Running"
+            show_empty: false
+            card:
+              type: glance
+          - type: entity-filter
              #title: Pesukone Kaynnissa
-             entities:
-               - entity: sensor.washing_machine
-                 icon: mdi:washing-machine
-                 name: Valmis
-                 style: "color: green"
-             state_filter:
-               - "Washing"
-             show_empty: false
-             card:
-               type: glance
-           - type: entity-filter
+            entities:
+              - entity: sensor.washing_machine
+                icon: mdi:washing-machine
+                name: Valmis
+                style: "color: green"
+            state_filter:
+              - "Washing"
+            show_empty: false
+            card:
+              type: glance
+          - type: entity-filter
              #title: Autotallin ovi
-             entities:
-               - entity: sensor.garage_status
-                 icon: mdi:garage-open
-                 name: Autotalli
-             state_filter:
-               - "Open"
-             show_empty: false
-             card:
-               type: glance
-           - type: conditional
-             conditions:
-               - entity: sensor.530e_iperformance_charging_status
-                 state_not: "FINISHED_FULLY_CHARGED"
-             card:
-               type: glance
-               entities:
-                 - type: sensor
-                   entity: sensor.530e_iperformance_charging_level_hv
-                   icon: mdi:car-sports
-                   hours_to_show: 24
-                   accuracy: 96
-                   name: Lataus %
-           - type: conditional
-             conditions:
-               - entity: group.all_locks
-                 state_not: "locked"
-             card:
-               type: glance
-               entities:
-                 - entity: group.all_locks
-           - type: conditional
-             conditions:
-               - entity: group.all_lights
-                 state_not: off
-             card:
-               type: glance
-               entities:
-                 - entity: group.all_lights
-           - type: conditional
-             conditions:
-               - entity: sensor.iv_tila
-                 state_not: "normaali"
-             card:
-               type: glance
-               entities:
-                 - entity: sensor.iv_tila
+            entities:
+              - entity: sensor.garage_status
+                icon: mdi:garage-open
+                name: Autotalli
+            state_filter:
+              - "Open"
+            show_empty: false
+            card:
+              type: glance
+          - type: conditional
+            conditions:
+              - entity: sensor.530e_iperformance_charging_status
+                state_not: "FINISHED_FULLY_CHARGED"
+            card:
+              type: glance
+              entities:
+                - type: sensor
+                  entity: sensor.530e_iperformance_charging_level_hv
+                  icon: mdi:car-sports
+                  hours_to_show: 24
+                  accuracy: 96
+                  name: Lataus %
+          - type: conditional
+            conditions:
+              - entity: group.all_locks
+                state_not: "locked"
+            card:
+              type: glance
+              entities:
+                - entity: group.all_locks
+          - type: conditional
+            conditions:
+              - entity: group.all_lights
+                state_not: off
+            card:
+              type: glance
+              entities:
+                - entity: group.all_lights
+          - type: conditional
+            conditions:
+              - entity: sensor.iv_tila
+                state_not: "normaali"
+            card:
+              type: glance
+              entities:
+                - entity: sensor.iv_tila
 
                    #icon: mdi:car-sports
                    #name: Lataus
@@ -141,29 +143,30 @@ views:
                  #          - entity: lock.polycontrol_danalock_v3_btze_locked
                  #            #icon: mdi:thermometer
                  #            name: Etuovi
-                 
-      - type: horizontal-stack
+      - id: 37df19883ba5423a9081a51b8a5016ea  # Automatically created id
+        type: horizontal-stack
         cards:
-           - type: sensor
-             entity: sensor.sisalampo
-             name: Sisalla
-             icon: mdi:thermometer
-             hours_to_show: 24
-             accuracy: 96
-           - type: sensor
-             entity: sensor.sisakosteus
-             name: Sisalla
-             icon: mdi:water-percent
-             hours_to_show: 24
-             accuracy: 96
-           - type: sensor
-             entity: sensor.iv_raitisilman_lampotila
-             name: Ulkona
-             icon: mdi:thermometer
-             hours_to_show: 24
-             accuracy: 96
+          - type: sensor
+            entity: sensor.ruuvi_temperature_mean
+            name: Sisalla
+            icon: mdi:thermometer
+            hours_to_show: 24
+            accuracy: 96
+          - type: sensor
+            entity: sensor.ruuvi_humidity_mean
+            name: Sisalla
+            icon: mdi:water-percent
+            hours_to_show: 24
+            accuracy: 96
+          - type: sensor
+            entity: sensor.iv_raitisilman_lampotila
+            name: Ulkona
+            icon: mdi:thermometer
+            hours_to_show: 24
+            accuracy: 96
 
-      - type: weather-forecast
+      - id: c97e67f36a01420eaf44f187cf5f556b  # Automatically created id
+        type: weather-forecast
         entity: weather.saa
         #entity: weather.dark_sky
         #      - type: iframe
@@ -202,19 +205,20 @@ views:
         #               - entity: sensor.auto_temperature
         #                 name: Sisalampo
 
-      - type: horizontal-stack
+      - id: f161cc20ad634b48bdc62125e6e6be90  # Automatically created id
+        type: horizontal-stack
         cards:
-           - type: picture-glance
-             title: Terassi
-             entities:
-               - camera.52m18372b655e_terassi
-             camera_image: camera.52m18372b655e_terassi
+          - type: picture-glance
+            title: Terassi
+            entities:
+              - camera.52m18372b655e_terassi
+            camera_image: camera.52m18372b655e_terassi
 
-           - type: picture-glance
-             title: Etuovi
-             entities:
-               - camera.52m1837fb65db_ulkoovi
-             camera_image: camera.52m1837fb65db_ulkoovi
+          - type: picture-glance
+            title: Etuovi
+            entities:
+              - camera.52m1837fb65db_ulkoovi
+            camera_image: camera.52m1837fb65db_ulkoovi
 
              #           - type: entities
              #             entities:
@@ -264,70 +268,77 @@ views:
                 #          - sensor.auto_temperature
                 #          - sensor.auto_humidity
 
-  - icon: mdi:air-conditioner
+  - id: 1  # Automatically created id
+    icon: mdi:air-conditioner
     title: ilmanvaihto
     type: vertical-stack
     cards:
-       - type: glance
-         entities:
-           - entity: sensor.iv_raitisilman_lampotila
-             name: Ulkolampotila
-           - entity: sensor.iv_poistoilman_kosteus_x5
-             name: Kosteus, Poisto
-           - entity: switch.iv_tehostus
-             name: Tehostus
-           - entity: sensor.iv_todellinen_teho
-             name: Teho
-           - entity: switch.iv_poissa
-             name: Poissa
-             tap_action: toggle
+      - id: 3f75f838ea2d48f5a3b9b71a315b3971  # Automatically created id
+        type: glance
+        entities:
+          - entity: sensor.iv_raitisilman_lampotila
+            name: Ulkolampotila
+          - entity: sensor.iv_poistoilman_kosteus_x5
+            name: Kosteus, Poisto
+          - entity: switch.iv_tehostus
+            name: Tehostus
+          - entity: sensor.iv_todellinen_teho
+            name: Teho
+          - entity: switch.iv_poissa
+            name: Poissa
+            tap_action: toggle
 
-       - type: glance
-         entities:
-           - entity: switch.iv_jaahdytys_sallittu
-             name: Jaahdytys Sallittu
-             tap_action: toggle
-           - entity: switch.iv_lammitus_sallittu
-             name: Lammitys Sallittu
-             tap_action: toggle
-           - entity: switch.iv_pitkaan_poissa
-             name: Pitkaan Poissa
-             tap_action: toggle
-           - entity: switch.iv_kosteus_tehostus
-             name: Kosteus Tehostus
-             tap_action: toggle
-           - entity: sensor.iv_tilatieto
-             name: Tila
+      - id: 24691350d6e34f198e531789e81fd865  # Automatically created id
+        type: glance
+        entities:
+          - entity: switch.iv_jaahdytys_sallittu
+            name: Jaahdytys Sallittu
+            tap_action: toggle
+          - entity: switch.iv_lammitus_sallittu
+            name: Lammitys Sallittu
+            tap_action: toggle
+          - entity: switch.iv_pitkaan_poissa
+            name: Pitkaan Poissa
+            tap_action: toggle
+          - entity: switch.iv_kosteus_tehostus
+            name: Kosteus Tehostus
+            tap_action: toggle
+          - entity: sensor.iv_tilatieto
+            name: Tila
 
-       - type: entities
-         entities:
-           - entity: sensor.iv_48h_kosteustason_keskiarvo
-           - entity: sensor.iv_jateilman_lampotila_x4
-           - entity: sensor.iv_lampotilan_saatoportaat
-           - entity: sensor.iv_lto_hyotysuhde_poistopuolella
-           - entity: sensor.iv_lto_hyotysuhde_tulopuolella
-           - entity: sensor.iv_lamposaato
-           - entity: sensor.iv_tila
-           - entity: sensor.iv_paluuveden_lampotila_x8
-           - entity: sensor.iv_poistoilman_lampotila_ennen_lto_x8
-           - entity: sensor.iv_poistoilman_lampotila_x5
-           - entity: sensor.iv_tuloilman_lampotila_lton_jalkeen_x2
-           - entity: sensor.iv_tuloilman_lampotila_x3
-           - entity: switch.iv_lampotila_tehostus
+      - id: 91df483ecaf54de58750d948dbf78c9e  # Automatically created id
+        type: entities
+        entities:
+          - entity: sensor.iv_48h_kosteustason_keskiarvo
+          - entity: sensor.iv_jateilman_lampotila_x4
+          - entity: sensor.iv_lampotilan_saatoportaat
+          - entity: sensor.iv_lto_hyotysuhde_poistopuolella
+          - entity: sensor.iv_lto_hyotysuhde_tulopuolella
+          - entity: sensor.iv_lamposaato
+          - entity: sensor.iv_tila
+          - entity: sensor.iv_paluuveden_lampotila_x8
+          - entity: sensor.iv_poistoilman_lampotila_ennen_lto_x8
+          - entity: sensor.iv_poistoilman_lampotila_x5
+          - entity: sensor.iv_tuloilman_lampotila_lton_jalkeen_x2
+          - entity: sensor.iv_tuloilman_lampotila_x3
+          - entity: switch.iv_lampotila_tehostus
              #- entity: switch.iv_liesituuletin
              #card:
              #  title: Ilmanvaihto
 
-  - icon: mdi:car
+  - id: 2  # Automatically created id
+    icon: mdi:car
     type: vertical-stack
     cards:
-       - type: picture-entity
-         title: BMW 530e
-         image: https://cdn.drivemag.net/media/default/0001/42/bmw-5-series-530e-iperformance-06-9939-default-large.jpeg
-         entity: sensor.530e_iperformance_mileage
-         name: Mileage
-       - type: glance
-         entities: 
+      - id: ad115c37fc31400396aa788532976e32  # Automatically created id
+        type: picture-entity
+        title: BMW 530e
+        image: https://cdn.drivemag.net/media/default/0001/42/bmw-5-series-530e-iperformance-06-9939-default-large.jpeg
+        entity: sensor.530e_iperformance_mileage
+        name: Mileage
+      - id: 9e738944dc8c4606a907f3694cb135e9  # Automatically created id
+        type: glance
+        entities:
           - entity: sensor.530e_iperformance_charging_level_hv
             name: Varaus
           - entity: sensor.530e_iperformance_remaining_range_total
@@ -342,30 +353,32 @@ views:
             #  title: Battery Status
             #  entities:
             #   - sensor.530e_iperformance_charging_level_hv 
-       - type: entities
-         title: Ovi
-         entities:
-           - entity: cover.garage
-             name: Autotallin Ovi
-       - type: entities
-         title: Liiketunnistin
-         entities:
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
-             name: Temperature
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
-             name: Luminance
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
-             name: Alarm Level
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
-             name: Alarm Type
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
-             name: Burglar
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_general
-             name: General
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
-             name: Seismic Intensity
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
-             name: Source Node ID
+      - id: 705c466f71a5432f9e707232a3081832  # Automatically created id
+        type: entities
+        title: Ovi
+        entities:
+          - entity: cover.garage
+            name: Autotallin Ovi
+      - id: eb8576b2bc764c619a7150c0d0a38244  # Automatically created id
+        type: entities
+        title: Liiketunnistin
+        entities:
+          - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+            name: Temperature
+          - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
+            name: Luminance
+          - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_level
+            name: Alarm Level
+          - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_alarm_type
+            name: Alarm Type
+          - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_burglar
+            name: Burglar
+          - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_general
+            name: General
+          - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
+            name: Seismic Intensity
+          - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_sourcenodeid
+            name: Source Node ID
 
 
 #  - icon: mdi:car
@@ -375,9 +388,11 @@ views:
 #           - group.bmw530e
 
 
-  - icon: mdi:lightbulb
+  - id: 3  # Automatically created id
+    icon: mdi:lightbulb
     cards:
-      - type: glance
+      - id: 8cb94e7e4fe7462190788f8375550e31  # Automatically created id
+        type: glance
         name: Valot
         entities:
           - entity: light.alakerran_olohuone
@@ -390,87 +405,95 @@ views:
             name: AK Olohuone lamppu3
 
 
-  - icon: mdi:washing-machine
+  - id: 4  # Automatically created id
+    icon: mdi:washing-machine
     cards:
-       - type: glance
-         title: Pesukone Kaynnissa
-         entities:
-           - sensor.washing_machine
-       - type: entities
-         entities:
-           - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_alarm_level
-             name: Alarm Level
-           - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_alarm_type
-             name: Alarm Type
-           - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_energy
-             name: Energy
-           - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power
-             name: Power
-           - entity: switch.philio_technology_corporation_pan11_smart_energy_plug_in_switch_switch
-             name: Switch
+      - id: 99835d84389842769b795d8b921db9d7  # Automatically created id
+        type: glance
+        title: Pesukone Kaynnissa
+        entities:
+          - sensor.washing_machine
+      - id: ca6ac6fdd1574b6baea23319042a1fb7  # Automatically created id
+        type: entities
+        entities:
+          - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_alarm_level
+            name: Alarm Level
+          - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_alarm_type
+            name: Alarm Type
+          - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_energy
+            name: Energy
+          - entity: sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power
+            name: Power
+          - entity: switch.philio_technology_corporation_pan11_smart_energy_plug_in_switch_switch
+            name: Switch
 
 
-  - icon: mdi:chip
+  - id: 5  # Automatically created id
+    icon: mdi:chip
     cards:
-       - type: entities
-         title: Lampotilat
-         entities:
-           - entity: sensor.auto_temperature
-           - entity: sensor.autotalli_temperature
-           - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
-           - entity: sensor.jakotukki_temperature
-           - entity: sensor.kodinhoito_temperature
-           - entity: sensor.lastenhuone_temperature
-           - entity: sensor.makuuhuone_temperature
-           - entity: sensor.olohuone_temperature
-           - entity: sensor.ruuvi_temperature_max
-           - entity: sensor.ruuvi_temperature_min
-           - entity: sensor.suihku_temperature
-           - entity: sensor.ulkolampo_temperature
-           - entity: sensor.weathertomorrow_temperature
-       - type: entities
-         title: Kosteus
-         entities:
-           - entity: sensor.auto_humidity
-           - entity: sensor.autotalli_humidity
-           - entity: sensor.jakotukki_humidity
-           - entity: sensor.kodinhoito_humidity
-           - entity: sensor.lastenhuone_humidity
-           - entity: sensor.makuuhuone_humidity
-           - entity: sensor.olohuone_humidity
-           - entity: sensor.ruuvi_humidity_max
-           - entity: sensor.suihku_humidity
-           - entity: sensor.ulkolampo_humidity
-           - entity: sensor.weathertomorrow_humidity
-       - type: entities
-         title: Patterit
-         entities:
-           - entity: sensor.auto_sensor_battery
-           - entity: sensor.autotalli_battery
-           - entity: sensor.jakotukki_sensor_battery
-           - entity: sensor.juhanis_iphone_battery_level
-           - entity: sensor.juhanis_iphone_battery_state
-           - entity: sensor.kodinhoito_sensor_battery
-           - entity: sensor.lastenhuone_sensor_battery
-           - entity: sensor.makuuhuone_sensor_battery
-           - entity: sensor.olohuone_sensor_battery
-           - entity: sensor.suihku_sensor_battery
-           - entity: sensor.ulkolampo_sensor_battery
+      - id: fd52e265e52d46b69e4fd52ee1dbcc11  # Automatically created id
+        type: entities
+        title: Lampotilat
+        entities:
+          - entity: sensor.auto_temperature
+          - entity: sensor.autotalli_temperature
+          - entity: sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+          - entity: sensor.jakotukki_temperature
+          - entity: sensor.kodinhoito_temperature
+          - entity: sensor.lastenhuone_temperature
+          - entity: sensor.makuuhuone_temperature
+          - entity: sensor.olohuone_temperature
+          - entity: sensor.ruuvi_temperature_mean
+          - entity: sensor.suihku_temperature
+          - entity: sensor.ulkolampo_temperature
+          - entity: sensor.weathertomorrow_temperature
+      - id: 30fd80326e2e466caa8b0d9edc5913a4  # Automatically created id
+        type: entities
+        title: Kosteus
+        entities:
+          - entity: sensor.auto_humidity
+          - entity: sensor.autotalli_humidity
+          - entity: sensor.jakotukki_humidity
+          - entity: sensor.kodinhoito_humidity
+          - entity: sensor.lastenhuone_humidity
+          - entity: sensor.makuuhuone_humidity
+          - entity: sensor.olohuone_humidity
+          - entity: sensor.ruuvi_humidity_mean
+          - entity: sensor.suihku_humidity
+          - entity: sensor.ulkolampo_humidity
+          - entity: sensor.weathertomorrow_humidity
+      - id: 2698b74913e24e938aad966da44d7527  # Automatically created id
+        type: entities
+        title: Patterit
+        entities:
+          - entity: sensor.auto_sensor_battery
+          - entity: sensor.autotalli_battery
+          - entity: sensor.jakotukki_sensor_battery
+          - entity: sensor.juhanis_iphone_battery_level
+          - entity: sensor.juhanis_iphone_battery_state
+          - entity: sensor.kodinhoito_sensor_battery
+          - entity: sensor.lastenhuone_sensor_battery
+          - entity: sensor.makuuhuone_sensor_battery
+          - entity: sensor.olohuone_sensor_battery
+          - entity: sensor.suihku_sensor_battery
+          - entity: sensor.ulkolampo_sensor_battery
 
-  - icon: mdi:play-network
+  - id: 6  # Automatically created id
+    icon: mdi:play-network
     cards:
-    - type: entities
-      entities:
-        - entity: media_player.alakerta
-          name: Sonos Alakerta
-        - entity: media_player.alakerta_2
-          name: Chromecast Alakerta
-        - entity: media_player.chromecastultra2983
-          name: Chromecast Vierashuone
-        - entity: media_player.chylakerta
-          name: Chromecast Ylakerta
-        - entity: media_player.olohuone
-          name: Sonos Olohuone
+      - id: 183829629f374e36b56364938705cf0a  # Automatically created id
+        type: entities
+        entities:
+          - entity: media_player.alakerta
+            name: Sonos Alakerta
+          - entity: media_player.alakerta_2
+            name: Chromecast Alakerta
+          - entity: media_player.chromecastultra2983
+            name: Chromecast Vierashuone
+          - entity: media_player.chylakerta
+            name: Chromecast Ylakerta
+          - entity: media_player.olohuone
+            name: Sonos Olohuone
 
 
 
