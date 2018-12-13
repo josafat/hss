@@ -520,7 +520,7 @@ binary_sensor:
         #  minutes: 1
         entity_id:
           - sensor.sisakosteus
-        value_template: '{{ states.sensor.sisakosteus.attributes.max_value|float - 10 > states.sensor.sisakosteus.attributes.mean|float }}'
+        value_template: '{{ states.sensor.ruuvi_humidity_mean.attributes.max_value|float - 10 > states.sensor.ruuvi_humidity_mean.attributes.mean|float }}'
   - platform: template
     sensors:
       autotalli_kosteus:
@@ -632,6 +632,7 @@ recorder:
 
 zwave:
   usb_path: /dev/ttyACM0
+  network_key: !secret zwave_netkey
 
 arlo:
   username: !secret arlo_username
@@ -640,6 +641,12 @@ arlo:
 camera:
   - platform: arlo
     ffmpeg_arguments: '-pred 1 -q:v 2'
+  - platform: generic
+    still_image_url: https://192.168.150.101/ISAPI/Streaming/channels/101/picture
+    username: !secret cam_ao_user
+    password: !secret cam_ao_pass
+    authentication: digest
+    verify_ssl: false
 
 alarm_control_panel:
   - platform: arlo

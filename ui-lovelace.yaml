@@ -220,6 +220,14 @@ views:
               - camera.52m1837fb65db_ulkoovi
             camera_image: camera.52m1837fb65db_ulkoovi
 
+          - type: picture-glance
+            title: Alaovi
+            entities:
+              - camera.generic_camera
+            camera_image: camera.generic_camera
+                #camera_image: camera.52m1837fb65db_ulkoovi
+
+
              #           - type: entities
              #             entities:
              #               - entity: sensor.530e_iperformance_mileage
@@ -481,8 +489,8 @@ views:
   - id: 6  # Automatically created id
     icon: mdi:play-network
     cards:
-      - id: 183829629f374e36b56364938705cf0a  # Automatically created id
-        type: entities
+      - type: entities
+        id: 183829629f374e36b56364938705cf0a  # Automatically created id
         entities:
           - entity: media_player.alakerta
             name: Sonos Alakerta
@@ -494,7 +502,16 @@ views:
             name: Chromecast Ylakerta
           - entity: media_player.olohuone
             name: Sonos Olohuone
-
+          - entity: media_player.samsung_6_series_49_ue49mu6455
+        show_header_toggle: false
+  - id: 7  # Automatically created id
+    icon: mdi:lock
+    cards:
+      - id: 183829629f374e36b56364938705cf0b  # Automatically created id
+        type: entities
+        entities:
+          - entity: lock.polycontrol_danalock_v3_btze_locked
+            name: Oven lukko
 
 
 # sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power
