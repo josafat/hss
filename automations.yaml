@@ -1,42 +1,50 @@
 - alias: Notify on Garage Open
   trigger:
     entity_id: cover.garage
-    from: "closed"
+    from: closed
     platform: state
-    to: "open"
+    to: open
   action:
     service: notify.NOTIFIER_NAME
     data:
-      message: "Garage door open"
+      message: Garage door open
       data:
         push:
           badge: 1
-
-- alias: Notify on Washing Machine Ready
+  id: 09bd600b31214b67883adf48edae1805
+- id: 9540cae190bd4e07a1f04b7e307dfc16
+  alias: Notify on Washing Machine Ready
   trigger:
-    entity_id: sensor.washing_machine
-    from: "Washing"
+  - entity_id: sensor.washing_machine
+    for: 00:01
+    from: Washing
     platform: state
-    to: "Ready"
+    to: Ready
   action:
-    service: notify.NOTIFIER_NAME
-    data:
-      message: "Washing machine ready"
+  - data:
       data:
         push:
           badge: 1
-
-          #- alias: Notify on High Humidity
-          #  trigger:
-          #    entity_id: binary_sensor.korkea_kosteus
-          #    from: off
-          #    platform: state
-          #    to: on
-          #  action:
-          #    service: notify.NOTIFIER_NAME
-          #    data:
-          #      message: High Humidity
-          #      data:
-          #        push:
-          #          badge: 1
-          #
+      message: Washing machine ready
+    service: notify.NOTIFIER_NAME
+- id: '1544900779997'
+  alias: Kosteus tehostus
+  trigger:
+  - entity_id: binary_sensor.korkea_kosteus
+    for: 00:10
+    from: 'false'
+    platform: state
+    to: 'true'
+  condition: []
+  action:
+  - data:
+      address: 53
+      unit: 1
+      value: 55
+    service: modbus.write_register
+  - data:
+      data:
+        push:
+          badge: 1
+      message: IV Tehostettu
+    service: notify.notifier_name

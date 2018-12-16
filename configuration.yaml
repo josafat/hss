@@ -519,8 +519,9 @@ binary_sensor:
         #delay_off:
         #  minutes: 1
         entity_id:
-          - sensor.sisakosteus
-        value_template: '{{ states.sensor.ruuvi_humidity_mean.attributes.max_value|float - 10 > states.sensor.ruuvi_humidity_mean.attributes.mean|float }}'
+          - sensor.ruuvi_humidity_mean
+            #- sensor.sisakosteus
+        value_template: '{{ states.sensor.ruuvi_humidity_mean.attributes.max_value|float - 7 > states.sensor.ruuvi_humidity_mean.attributes.mean|float }}'
   - platform: template
     sensors:
       autotalli_kosteus:
@@ -530,7 +531,7 @@ binary_sensor:
         entity_id:
           - sensor.sisakosteus
           - sensor.autotalli_humidity
-        value_template: '{{ states.sensor.autotalli_humidity|float - 10 > states.sensor.sisakosteus.attributes.mean|float }}'
+        value_template: '{{ states.sensor.autotalli_humidity|float - 7 > states.sensor.sisakosteus.attributes.mean|float }}'
 
 switch:
   platform: modbus
