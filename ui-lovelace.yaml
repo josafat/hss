@@ -49,7 +49,7 @@ views:
             entities:
               - entity: sensor.washing_machine
                 icon: mdi:washing-machine
-                name: Valmis
+                name: Pesukone
                 style: "color: green"
             state_filter:
               - "Washing"
@@ -512,6 +512,13 @@ views:
         entities:
           - entity: lock.polycontrol_danalock_v3_btze_locked
             name: Oven lukko
+
+  - icon: mdi:air-conditioner
+    cards:
+      - type: shopping-list
+        title: Ostoslist
+
+
 
 
 # sensor.philio_technology_corporation_pan11_smart_energy_plug_in_switch_power

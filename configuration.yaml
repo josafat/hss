@@ -533,6 +533,15 @@ binary_sensor:
           - sensor.autotalli_humidity
         value_template: '{{ states.sensor.autotalli_humidity|float - 7 > states.sensor.sisakosteus.attributes.mean|float }}'
 
+  - platform: hikvision
+    host: 192.168.150.101
+    port: 80
+    ssl: false
+    #verify_ssl: false
+    username: !secret cam_ao_user
+    password: !secret cam_ao_pass
+    authentication: digest
+
 switch:
   platform: modbus
   coils:
@@ -661,6 +670,8 @@ cover:
         host: 192.168.200.100
         device_key: !secret garage_key
         name: garage
+
+shopping_list:
 
 notify: !include notify.yaml
 group: !include groups.yaml

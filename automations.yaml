@@ -16,7 +16,8 @@
   alias: Notify on Washing Machine Ready
   trigger:
   - entity_id: sensor.washing_machine
-    for: 00:01
+    for:
+      minutes: 2
     from: Washing
     platform: state
     to: Ready
@@ -31,11 +32,9 @@
   alias: Kosteus tehostus
   trigger:
   - entity_id: binary_sensor.korkea_kosteus
-    for: 00:10
-    from: 'false'
+    from: 'off'
     platform: state
-    to: 'true'
-  condition: []
+    to: 'on'
   action:
   - data:
       address: 53
@@ -47,4 +46,23 @@
         push:
           badge: 1
       message: IV Tehostettu
-    service: notify.notifier_name
+    service: notify.NOTIFIER_NAME
+- id: '1545295385092'
+  alias: Normaali Kosteus
+  trigger:
+  - entity_id: binary_sensor.korkea_kosteus
+    from: 'on'
+    platform: state
+    to: 'off'
+  action:
+  - data:
+      address: 53
+      unit: 1
+      value: 39
+    service: modbus.write_register
+  - data:
+      data:
+        push:
+          badge: 1
+      message: IV Normaali
+    service: notify.NOTIFIER_NAME
