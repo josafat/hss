@@ -66,3 +66,28 @@
           badge: 1
       message: IV Normaali
     service: notify.NOTIFIER_NAME
+- id: '1546505457362'
+  alias: Autotallissa liiketta
+  trigger:
+  - entity_id: binary_sensor.fibaro_system_fgms001zw5_motion_sensor_sensor
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      data: {}
+      message: Liiketta autotallissa
+    service: notify.notifier_name
+- id: '1546505574625'
+  alias: Alaovella liikettä
+  trigger:
+  - entity_id: binary_sensor.ip_camera_alaovi_motion
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      data: {}
+      message: Alaovella liiketta
+    service: notify.notifier_name

@@ -534,8 +534,8 @@ binary_sensor:
         value_template: '{{ states.sensor.autotalli_humidity|float - 7 > states.sensor.sisakosteus.attributes.mean|float }}'
 
   - platform: hikvision
-    host: 192.168.150.101
-    port: 80
+    host: localhost
+    port: 9090 
     ssl: false
     #verify_ssl: false
     username: !secret cam_ao_user
