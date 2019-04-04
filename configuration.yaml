@@ -14,8 +14,8 @@ homeassistant:
   customize: !include customize.yaml
 
   auth_providers:
-   - type: legacy_api_password
-     #- type: homeassistant
+          #- type: legacy_api_password
+     - type: homeassistant
 
 # Show links to resources in log and frontend
 #introduction:
@@ -67,25 +67,26 @@ sun:
 
 # Weather prediction
 sensor:
-  - platform: yr
-    name: WeatherTomorrow
-    forecast: 24
-    monitored_conditions:
-      - temperature
-      - symbol
-      - precipitation
-      - windSpeed
-      - windDirection
-      - humidity
-      - fog
-      - cloudiness
-      - lowClouds
-      - mediumClouds
-      - highClouds
+        #  - platform: yr
+        #    name: WeatherTomorrow
+        #    forecast: 24
+        #    monitored_conditions:
+        #      - temperature
+        #      - symbol
+        #      - precipitation
+        #      - windSpeed
+        #      - windDirection
+        #      - humidity
+        #      - fog
+        #      - cloudiness
+        #      - lowClouds
+        #      - mediumClouds
+        #      - highClouds
 
   - platform: modbus
     registers:
     - name: IV Raitisilman lampotila
+      hub: usb1
       unit_of_measurement: °C
       slave: 1
       register: 6
@@ -93,6 +94,7 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Tuloilman lampotila LTOn jalkeen X2
+      hub: usb1
       unit_of_measurement: °C
       slave: 1
       register: 7
@@ -100,6 +102,7 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Tuloilman lampotila X3
+      hub: usb1
       unit_of_measurement: °C
       slave: 1
       register: 8
@@ -107,6 +110,7 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Jateilman lampotila X4
+      hub: usb1
       unit_of_measurement: °C
       slave: 1
       register: 9
@@ -114,6 +118,7 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Poistoilman lampotila X5
+      hub: usb1
       unit_of_measurement: °C
       slave: 1
       register: 10
@@ -121,6 +126,7 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Poistoilman lampotila ennen LTO X8
+      hub: usb1
       unit_of_measurement: °C
       slave: 1
       register: 11
@@ -128,6 +134,7 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Paluuveden lampotila X8
+      hub: usb1
       unit_of_measurement: °C
       slave: 1
       register: 12
@@ -135,51 +142,60 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Poistoilman kosteus X5
+      hub: usb1
       unit_of_measurement: '%'
       slave: 1
       register: 13
       count: 1
       register_type: holding
     - name: IV LTO hyotysuhde tulopuolella
+      hub: usb1
       unit_of_measurement: '%'
       slave: 1
       register: 29
       count: 1
       register_type: holding
     - name: IV LTO hyotysuhde poistopuolella
+      hub: usb1
       unit_of_measurement: '%'
       slave: 1
       register: 30
       count: 1
       register_type: holding
     - name: IV 48h kosteustason keskiarvo
+      hub: usb1
       unit_of_measurement: '%'
       slave: 1
       register: 35
       count: 1
       register_type: holding
     - name: IV Tilatieto
+      hub: usb1
       slave: 1
       register: 44
       count: 1
       register_type: holding
     - name: IV Lampotilan saatoportaat
+      hub: usb1
       slave: 1
       register: 45
       count: 1
       register_type: holding
     - name: IV Huone Lampotilan keskiarvo
+      hub: usb1
       slave: 1
       register: 46
       count: 1
       register_type: holding
-    - name: IV Todellinen teho
+    - name: IV_Todellinen_teho
+      hub: usb1
       unit_of_measurement: '%'
       slave: 1
       register: 50
       count: 1
       register_type: holding
     - name: IV-Teho valitaan kayttopaneelilta
+      hub: usb1
       unit_of_measurement: '%'
       slave: 1
       register: 53
@@ -331,6 +347,13 @@ sensor:
     unit_of_measurement: 'mV'
 
   - platform: min_max
+    name: co2 mean
+    type: mean
+    entity_ids:
+      - sensor.netatmo_netatmo_co2
+      - sensor.netatmo_sisalisa_co2
+
+  - platform: min_max
     name: ruuvi humidity mean
     type: mean
     entity_ids:
@@ -390,6 +413,30 @@ sensor:
         #      - sensor.makuuhuone_temperature
         #      - sensor.olohuone_temperature
         #      - sensor.suihku_temperature
+
+
+  - platform: netatmo
+    station: netatmo
+    modules:
+      ulko:
+        - temperature
+        - battery_percent
+        - pressure
+        - humidity
+      sisalisa:
+        - temperature
+        - battery_percent
+        - battery_vp
+        - co2
+        - pressure
+        - humidity
+          #      netatmo:
+          #        - temperature
+          #        - battery_vp
+          #        - co2
+          #        - pressure
+          #        - noise
+          #        - humidity
 
   - platform: arlo
     monitored_conditions:
@@ -522,6 +569,17 @@ binary_sensor:
           - sensor.ruuvi_humidity_mean
             #- sensor.sisakosteus
         value_template: '{{ states.sensor.ruuvi_humidity_mean.attributes.max_value|float - 7 > states.sensor.ruuvi_humidity_mean.attributes.mean|float }}'
+
+  - platform: template
+    sensors:
+      korkea_co2:
+        friendly_name: "Korkea CO2"
+        #delay_off:
+        #  minutes: 1
+        entity_id:
+          - sensor.co2_mean
+        value_template: '{{ states.sensor.co2_mean.attributes.max_value|float > 950 }}'
+
   - platform: template
     sensors:
       autotalli_kosteus:
@@ -540,40 +598,48 @@ binary_sensor:
     #verify_ssl: false
     username: !secret cam_ao_user
     password: !secret cam_ao_pass
-    authentication: digest
+    #authentication: digest
 
 switch:
   platform: modbus
   coils:
     - name: IV Poissa
+      hub: usb1
       slave: 1
       coil: 1
     - name: IV Pitkaan Poissa
+      hub: usb1
       slave: 1
       coil: 2
     - name: IV Liesituuletin
+      hub: usb1
       slave: 1
       coil: 4
     - name: IV Kosteus Tehostus
+      hub: usb1
       slave: 1
       coil: 9
     - name: IV Tehostus
+      hub: usb1
       slave: 1
       coil: 10
     - name: IV Lampotila Tehostus
+      hub: usb1
       slave: 1
       coil: 11
     - name: IV Jaahdytys sallittu
+      hub: usb1
       slave: 1
       coil: 52
     - name: IV Lammitus sallittu
+      hub: usb1
       slave: 1
       coil: 54
   #registers:
 
 # Text to speech
-tts:
-  - platform: google
+#tts:
+#  - platform: google
 
 # Cloud
 #cloud:
@@ -585,6 +651,7 @@ bmw_connected_drive:
     region: rest_of_world
 
 modbus:
+  name: usb1
   type: serial
   method: rtu
   port: /dev/ttyUSB0
@@ -605,31 +672,30 @@ device_tracker:
       - !secret unifi_ssid
 
 weather:
-  - platform: yweather
-        #  - platform: darksky
-        #api_key: !secret darksky_apikey
-    language: fi
+  - platform: darksky
+    api_key: !secret darksky_apikey
+    #    language: fi
     name: Saa
-    monitored_conditions:
-      - summary
-      - precip_type
-      - precip_intensity
-      - precip_probability
-      - precip_accumulation
-      - icon
-      - temperature
-      - wind_speed
-      - wind_bearing
-      - cloud_cover
-      - humidity
-      - pressure
-      - minutely_summary
-      - hourly_summary
-      - daily_summary
-      - temperature_high
-      - temperature_low
-      - apparent_temperature_high
-      - apparent_temperature_low
+    #    monitored_conditions:
+    #      - summary
+    #      - precip_type
+    #      - precip_intensity
+    #      - precip_probability
+    #      - precip_accumulation
+    #      - icon
+    #      - temperature
+    #      - wind_speed
+    #      - wind_bearing
+    #      - cloud_cover
+    #      - humidity
+    #      - pressure
+    #      - minutely_summary
+    #      - hourly_summary
+    #      - daily_summary
+    #      - temperature_high
+    #      - temperature_low
+    #      - apparent_temperature_high
+    #      - apparent_temperature_low
 
 plant:
   Sisalla:
@@ -648,11 +714,14 @@ arlo:
   username: !secret arlo_username
   password: !secret arlo_password
 
+stream:
+
 camera:
   - platform: arlo
     ffmpeg_arguments: '-pred 1 -q:v 2'
   - platform: generic
     still_image_url: https://192.168.150.101/ISAPI/Streaming/channels/101/picture
+    stream_source: !secret cam_rtsp_url
     username: !secret cam_ao_user
     password: !secret cam_ao_pass
     authentication: digest
@@ -671,7 +740,14 @@ cover:
         device_key: !secret garage_key
         name: garage
 
+netatmo:
+  api_key: !secret netatmo_apikey
+  secret_key: !secret netatmo_secretkey
+  username: !secret netatmo_username
+  password: !secret netatmo_password
+
 shopping_list:
+system_health:
 
 notify: !include notify.yaml
 group: !include groups.yaml

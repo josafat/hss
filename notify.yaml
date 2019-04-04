@@ -1,0 +1,6 @@
+#- name: NOTIFIER_NAME
+  - name: notifier_name
+    platform: group
+    services:
+      - service: ios_juhanis_iphone
+

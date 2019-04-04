@@ -1,71 +1,3 @@
-- alias: Notify on Garage Open
-  trigger:
-    entity_id: cover.garage
-    from: closed
-    platform: state
-    to: open
-  action:
-    service: notify.NOTIFIER_NAME
-    data:
-      message: Garage door open
-      data:
-        push:
-          badge: 1
-  id: 09bd600b31214b67883adf48edae1805
-- id: 9540cae190bd4e07a1f04b7e307dfc16
-  alias: Notify on Washing Machine Ready
-  trigger:
-  - entity_id: sensor.washing_machine
-    for:
-      minutes: 2
-    from: Washing
-    platform: state
-    to: Ready
-  action:
-  - data:
-      data:
-        push:
-          badge: 1
-      message: Washing machine ready
-    service: notify.NOTIFIER_NAME
-- id: '1544900779997'
-  alias: Kosteus tehostus
-  trigger:
-  - entity_id: binary_sensor.korkea_kosteus
-    from: 'off'
-    platform: state
-    to: 'on'
-  action:
-  - data:
-      address: 53
-      unit: 1
-      value: 55
-    service: modbus.write_register
-  - data:
-      data:
-        push:
-          badge: 1
-      message: IV Tehostettu
-    service: notify.NOTIFIER_NAME
-- id: '1545295385092'
-  alias: Normaali Kosteus
-  trigger:
-  - entity_id: binary_sensor.korkea_kosteus
-    from: 'on'
-    platform: state
-    to: 'off'
-  action:
-  - data:
-      address: 53
-      unit: 1
-      value: 39
-    service: modbus.write_register
-  - data:
-      data:
-        push:
-          badge: 1
-      message: IV Normaali
-    service: notify.NOTIFIER_NAME
 - id: '1546505457362'
   alias: Autotallissa liiketta
   trigger:
@@ -74,10 +6,10 @@
     to: 'on'
   condition: []
   action:
-  - data:
+  - service: notify.notifier_name
+    data:
       data: {}
       message: Liiketta autotallissa
-    service: notify.notifier_name
 - id: '1546505574625'
   alias: Alaovella liikettä
   trigger:
@@ -91,3 +23,100 @@
       data: {}
       message: Alaovella liiketta
     service: notify.notifier_name
+- id: '1548368982585'
+  alias: Tehostettu IV
+  trigger:
+  - entity_id: binary_sensor.korkea_kosteus
+    platform: state
+    to: 'on'
+  - above: '950'
+    entity_id: sensor.netatmo_netatmo_co2
+    platform: numeric_state
+  - above: '950'
+    entity_id: sensor.netatmo_sisalisa_co2
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      address: 53
+      unit: 1
+      value: 55
+      hub: 'usb1'
+    service: modbus.write_register
+  - data:
+      message: IV Tehostettu
+    service: notify.notifier_name
+- id: '1548369086316'
+  alias: Normaali IV
+  trigger:
+  - entity_id: binary_sensor.korkea_kosteus
+    for: 0:15:0
+    platform: state
+    to: 'off'
+  - entity_id: binary_sensor.korkea_co2
+    for: 0:15:0
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.korkea_co2
+    state: 'off'
+  - condition: state
+    entity_id: binary_sensor.korkea_kosteus
+    state: 'off'
+  action:
+  - data:
+      address: 53
+      unit: 1
+      hub: 'usb1'
+      value: 40
+    service: modbus.write_register
+  - data:
+      message: IV normaali
+    service: notify.notifier_name
+- id: '1548369262074'
+  alias: Autotallin ovi auki
+  trigger:
+  - entity_id: cover.garage
+    platform: state
+    to: open
+  condition: []
+  action:
+  - data:
+      message: Autotallin ovi auki
+    service: notify.notifier_name
+- id: '1548369345665'
+  alias: Pyykinpesukone on valmis
+  trigger:
+  - entity_id: sensor.washing_machine
+    for: '120'
+    platform: state
+    to: Ready
+  condition: []
+  action:
+  - data:
+      message: Pyykinpesukone on valmis
+    service: notify.notifier_name
+- id: '1548876201080'
+  alias: Alakerran valot päälle
+  trigger:
+  - above: '0'
+    entity_id: sensor.fibaro_system_unknown_type_0801_id_1002_burglar
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: light.alakerran_olohuone
+    service: light.turn_on
+- id: '1548876449017'
+  alias: Alakerran valot pois päältä
+  trigger:
+  - below: '1'
+    entity_id: sensor.fibaro_system_unknown_type_0801_id_1002_burglar
+    for: 0:30:00
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: light.alakerran_olohuone
+    service: light.turn_off

@@ -225,6 +225,9 @@ views:
             entities:
               - camera.generic_camera
             camera_image: camera.generic_camera
+            tap_action:
+              action: more-info
+
                 #camera_image: camera.52m1837fb65db_ulkoovi
 
 
