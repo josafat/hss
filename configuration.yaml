@@ -86,7 +86,7 @@ sensor:
   - platform: modbus
     registers:
     - name: IV Raitisilman lampotila
-      hub: usb1
+      hub: hub1
       unit_of_measurement: °C
       slave: 1
       register: 6
@@ -94,7 +94,7 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Tuloilman lampotila LTOn jalkeen X2
-      hub: usb1
+      hub: hub1
       unit_of_measurement: °C
       slave: 1
       register: 7
@@ -102,7 +102,7 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Tuloilman lampotila X3
-      hub: usb1
+      hub: hub1
       unit_of_measurement: °C
       slave: 1
       register: 8
@@ -110,15 +110,15 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Jateilman lampotila X4
-      hub: usb1
       unit_of_measurement: °C
+      hub: hub1
       slave: 1
       register: 9
       scale: 0.1
       count: 1
       register_type: holding
     - name: IV Poistoilman lampotila X5
-      hub: usb1
+      hub: hub1
       unit_of_measurement: °C
       slave: 1
       register: 10
@@ -126,7 +126,7 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Poistoilman lampotila ennen LTO X8
-      hub: usb1
+      hub: hub1
       unit_of_measurement: °C
       slave: 1
       register: 11
@@ -134,7 +134,7 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Paluuveden lampotila X8
-      hub: usb1
+      hub: hub1
       unit_of_measurement: °C
       slave: 1
       register: 12
@@ -142,60 +142,60 @@ sensor:
       count: 1
       register_type: holding
     - name: IV Poistoilman kosteus X5
-      hub: usb1
+      hub: hub1
       unit_of_measurement: '%'
       slave: 1
       register: 13
       count: 1
       register_type: holding
     - name: IV LTO hyotysuhde tulopuolella
-      hub: usb1
+      hub: hub1
       unit_of_measurement: '%'
       slave: 1
       register: 29
       count: 1
       register_type: holding
     - name: IV LTO hyotysuhde poistopuolella
-      hub: usb1
+      hub: hub1
       unit_of_measurement: '%'
       slave: 1
       register: 30
       count: 1
       register_type: holding
     - name: IV 48h kosteustason keskiarvo
-      hub: usb1
+      hub: hub1
       unit_of_measurement: '%'
       slave: 1
       register: 35
       count: 1
       register_type: holding
     - name: IV Tilatieto
-      hub: usb1
+      hub: hub1
       slave: 1
       register: 44
       count: 1
       register_type: holding
     - name: IV Lampotilan saatoportaat
-      hub: usb1
+      hub: hub1
       slave: 1
       register: 45
       count: 1
       register_type: holding
     - name: IV Huone Lampotilan keskiarvo
-      hub: usb1
+      hub: hub1
       slave: 1
       register: 46
       count: 1
       register_type: holding
     - name: IV_Todellinen_teho
-      hub: usb1
+      hub: hub1
       unit_of_measurement: '%'
       slave: 1
       register: 50
       count: 1
       register_type: holding
     - name: IV-Teho valitaan kayttopaneelilta
-      hub: usb1
+      hub: hub1
       unit_of_measurement: '%'
       slave: 1
       register: 53
@@ -604,35 +604,35 @@ switch:
   platform: modbus
   coils:
     - name: IV Poissa
-      hub: usb1
+      hub: hub1
       slave: 1
       coil: 1
     - name: IV Pitkaan Poissa
-      hub: usb1
+      hub: hub1
       slave: 1
       coil: 2
     - name: IV Liesituuletin
-      hub: usb1
+      hub: hub1
       slave: 1
       coil: 4
     - name: IV Kosteus Tehostus
-      hub: usb1
+      hub: hub1
       slave: 1
       coil: 9
     - name: IV Tehostus
-      hub: usb1
+      hub: hub1
       slave: 1
       coil: 10
     - name: IV Lampotila Tehostus
-      hub: usb1
+      hub: hub1
       slave: 1
       coil: 11
     - name: IV Jaahdytys sallittu
-      hub: usb1
+      hub: hub1
       slave: 1
       coil: 52
     - name: IV Lammitus sallittu
-      hub: usb1
+      hub: hub1
       slave: 1
       coil: 54
   #registers:
@@ -651,14 +651,14 @@ bmw_connected_drive:
     region: rest_of_world
 
 modbus:
-  name: usb1
-  type: serial
-  method: rtu
-  port: /dev/ttyUSB0
-  baudrate: 19200
-  stopbits: 1
-  bytesize: 8
-  parity: N
+  - type: serial
+    name: hub1
+    method: rtu
+    port: /dev/ttyUSB0
+    baudrate: 19200
+    stopbits: 1
+    bytesize: 8
+    parity: N
 
 ios:
 
@@ -753,4 +753,13 @@ notify: !include notify.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+
+
+input_number:
+  fan_speed:
+    name: Fan speed
+    min: 40
+    max: 60
+    step: 1
+    unit_of_measurement: step
 
